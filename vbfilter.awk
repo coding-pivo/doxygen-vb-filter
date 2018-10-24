@@ -548,11 +548,16 @@ insideEnum==1 {
 }
 
 /^[ \t]*End[[:blank:]]+Type/ && insideType==1{
-	commentPart=substr(lastTypeLine,match(lastTypeLine,"[/][*][*]<"));
-	definitionPart=substr(lastTypeLine,0,match(lastTypeLine,"[/][*][*]<")-2);
+	if (match(lastTypeLine,"[/][*][*]<") != 0) {
+		commentPart=substr(lastTypeLine,match(lastTypeLine,"[/][*][*]<"));
+		definitionPart=substr(lastTypeLine,0,match(lastTypeLine,"[/][*][*]<")-2);
+	} else {
+		commentPart="";
+		definitionPart=lastTypeLine;
+	}
 	if (definitionPart=="") print appShift commentPart ";";
 	else {
-		print appShift definitionPart "; " commentPart
+		print appShift convertSimpleType(definitionPart) "; " commentPart
 	}
 	ReduceShift()
 	print appShift "}"
@@ -568,11 +573,16 @@ insideType==1 {
 		if (typeComment!="") print typeComment;
 		typeComment="";
 	} else {
-		commentPart=substr(lastTypeLine,match(lastTypeLine,"[/][*][*]<"));
-		definitionPart=substr(lastTypeLine,0,match(lastTypeLine,"[/][*][*]<")-2);
+		if (match(lastTypeLine,"[/][*][*]<") != 0) {
+			commentPart=substr(lastTypeLine,match(lastTypeLine,"[/][*][*]<"));
+			definitionPart=substr(lastTypeLine,0,match(lastTypeLine,"[/][*][*]<")-2);
+		} else {
+			commentPart="";
+			definitionPart=lastTypeLine;
+		}
 		if (definitionPart=="") print appShift commentPart ";";
 		else {
-			print appShift definitionPart "; " commentPart
+			print appShift convertSimpleType(definitionPart) "; " commentPart
 		}
 		lastTypeLine = $0;
 		# print leading comment of next element, if present
