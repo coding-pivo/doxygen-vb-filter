@@ -282,7 +282,7 @@ printedFilename==0 {
 
 ## beginning of comment
 (/^[[:blank:]]*'''[[:blank:]]*/ || /^[[:blank:]]*'[[:blank:]]*[\\<][^ ].+/) && insideComment!=1 {
-	if (insideEnum==1){	
+	if (insideEnum==1) {	
 		# if enum is being processed, add comment to enumComment
 		# instead of printing it
 		if (enumComment!="") {
@@ -290,7 +290,14 @@ printedFilename==0 {
 		} else {
 			enumComment = appShift "/**";
 		}
-		
+	} else if (insideType==1) {
+		# if type is being processed, add comment to typeComment
+		# instead of printing it
+		if (typeComment!="") {
+			typeComment = typeComment "\n" appShift "/**";
+		} else {
+			typeComment = appShift "/**";
+		}
 	} else {
 	
 		# if inheritance is being processed, then add comment to lastLine
@@ -307,12 +314,16 @@ printedFilename==0 {
 
 ## strip leading '''
 /^[[:blank:]]*'/ {
-	if(insideComment==1){
+	if(insideComment==1) {
 		commentString=gensub("^[ \t]*[']+"," * ",1,$0);
 		# if enum is being processed, add comment to enumComment
 		# instead of printing it
-		if (insideEnum==1){
+		if (insideEnum==1) {
 			enumComment = enumComment "\n" appShift commentString;
+		# if type is being processed, add comment to typeComment
+		# instead of printing it
+		} else if (insideType==1) {
+			typeComment = typeComment "\n" appShift commentString;
 		} else {
 			print appShift commentString;
 		}
@@ -324,8 +335,12 @@ printedFilename==0 {
 (!(/^[[:blank:]]*'/)) && insideComment==1 {
 	# if enum is being processed, add comment to enumComment
 	# instead of printing it
-	if (insideEnum==1){	
+	if (insideEnum==1) {	
 		enumComment = enumComment "\n" appShift " */";
+	# if type is being processed, add comment to typeComment
+	# instead of printing it
+	} else if (insideType==1) {
+		typeComment = typeComment "\n" appShift " */";
 	} else {
 		print appShift " */";
 	}
@@ -477,7 +492,7 @@ printedFilename==0 {
 }
 
 #############################################################################
-# Enums
+# enums
 #############################################################################
 /^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ {
 	sub("Enum","enum");
@@ -515,6 +530,54 @@ insideEnum==1 {
 		# print leading comment of next element, if present
 		if (enumComment!="") print enumComment;
 		enumComment="";
+	}
+	next;
+}
+
+#############################################################################
+# types
+#############################################################################
+/^Type[[:blank:]]+/ || /[[:blank:]]+Type[[:blank:]]+/ {
+	sub("Type","struct");
+	sub("+*[[:blank:]]As.*",""); # types shouldn't have type definitions
+	print appShift $0"\n"appShift"{";
+	insideType=1;
+	lastTypeLine="";
+	AddShift()
+	next;
+}
+
+/^[ \t]*End[[:blank:]]+Type/ && insideType==1{
+	commentPart=substr(lastTypeLine,match(lastTypeLine,"[/][*][*]<"));
+	definitionPart=substr(lastTypeLine,0,match(lastTypeLine,"[/][*][*]<")-2);
+	if (definitionPart=="") print appShift commentPart ";";
+	else {
+		print appShift definitionPart "; " commentPart
+	}
+	ReduceShift()
+	print appShift "}"
+	insideType=0;
+	lastTypeLine="";
+	typeComment="";
+	next;
+}
+
+insideType==1 {
+	if ( lastTypeLine == "" ) {
+		lastTypeLine = $0;
+		if (typeComment!="") print typeComment;
+		typeComment="";
+	} else {
+		commentPart=substr(lastTypeLine,match(lastTypeLine,"[/][*][*]<"));
+		definitionPart=substr(lastTypeLine,0,match(lastTypeLine,"[/][*][*]<")-2);
+		if (definitionPart=="") print appShift commentPart ";";
+		else {
+			print appShift definitionPart "; " commentPart
+		}
+		lastTypeLine = $0;
+		# print leading comment of next element, if present
+		if (typeComment!="") print typeComment;
+		typeComment="";
 	}
 	next;
 }
@@ -755,13 +818,10 @@ function findEndArgs(string) {
 /^Class[[:blank:]]+/ ||
 /.*[[:blank:]]Class[[:blank:]]+/ ||
 /^Structure[[:blank:]]+/ ||
-/.*[[:blank:]]Structure[[:blank:]]+/ ||
-/^Type[[:blank:]]+/ ||
-/(friend|protected|private|public).*[[:blank:]]+Type[[:blank:]]+/ {
+/.*[[:blank:]]Structure[[:blank:]]+/ {
 	sub("Interface","interface");
 	sub("Class","class");
 	sub("Structure","struct");
-	sub("Type","struct");
 	if(isInherited) {
 		endOfInheritance();
 	}
@@ -813,8 +873,7 @@ isInherited==1{
 
 (/.*End[[:blank:]]+Interface/ ||
  /.*End[[:blank:]]+Class.*/ ||
- /.*End[[:blank:]]+Structure/ ||
- /.*End[[:blank:]]+Type/) &&
+ /.*End[[:blank:]]+Structure/) &&
  (classNestCounter >= 1){
 	ReduceShift();
 	print appShift "}";
