@@ -497,6 +497,9 @@ printedFilename==0 {
 /^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ {
 	sub("Enum","enum");
 	sub("+*[[:blank:]]As.*",""); # enums shouldn't have type definitions
+	if (isInherited==1) {
+		endOfInheritance();
+	}
 	print appShift $0"\n"appShift"{";
 	insideEnum=1;
 	lastEnumLine="";
@@ -540,6 +543,9 @@ insideEnum==1 {
 /^Type[[:blank:]]+/ || /[[:blank:]]+Type[[:blank:]]+/ {
 	sub("Type","struct");
 	sub("+*[[:blank:]]As.*",""); # types shouldn't have type definitions
+	if (isInherited==1) {
+		endOfInheritance();
+	}
 	print appShift $0"\n"appShift"{";
 	insideType=1;
 	lastTypeLine="";
