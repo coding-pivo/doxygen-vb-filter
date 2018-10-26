@@ -1,5 +1,5 @@
 /**
- * @file VBAClass.cls
+ * @file VBAClass1.cls
  * \brief Single VB6 class module, defining VBAClass1
  */
 namespace vba {
