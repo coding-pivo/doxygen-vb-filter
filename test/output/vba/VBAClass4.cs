@@ -13,13 +13,13 @@ namespace vba {
 	class VBAClass4
 	{
 		private enum SampleEnum
+		{
 			[_First] = 0,
 			enumItem1 = 0,
 			enumItem2 = 1,
 			enumItem3 = 2,
 			[_Last] = 2
 		}
-	{
 		private struct SampleType1
 		{
 			long typeItem1;
