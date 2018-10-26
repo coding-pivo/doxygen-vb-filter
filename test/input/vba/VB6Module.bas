@@ -40,17 +40,6 @@ Private Enum SampleEnum2
 End Enum
 
 ' <summary>
-' simple VB6 Structure
-' </summary>
-Public Structure SampleVB6Structure
-    ''' simple private integer value
-    Private someInteger As Integer
-    ''' simple public string value
-    Public someString As String
-    Public someLong As Long
-End Structure
-
-' <summary>
 ' simple VBA/VB6 Type
 ' </summary>
 Public Type SampleVBAType

@@ -50,23 +50,6 @@ namespace vba {
 	}
 	/**
 	 *  <summary>
-	 *  simple VB6 Structure
-	 *  </summary>
-	 */
-	public struct SampleVB6Structure
-	{
-		/**
-		 *  simple private integer value
-		 */
-		private int someInteger;
-		/**
-		 *  simple public string value
-		 */
-		public string someString;
-		public long someLong;
-	}
-	/**
-	 *  <summary>
 	 *  simple VBA/VB6 Type
 	 *  </summary>
 	 */
