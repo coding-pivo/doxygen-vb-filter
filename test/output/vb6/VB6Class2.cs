@@ -14,8 +14,8 @@ namespace vb6 {
 	{
 		private struct SampleType1
 		{
-			long typeItem1;
-			long typeItem2;
+			long typeItem1; 
+			long typeItem2; 
 		}
 		private enum SampleEnum
 		{

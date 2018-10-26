@@ -22,8 +22,8 @@ namespace vba {
 		}
 		private struct SampleType1
 		{
-			long typeItem1;
-			double typeItem2;
+			long typeItem1; 
+			double typeItem2; 
 		}
 	}
 }

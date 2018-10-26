@@ -22,21 +22,21 @@ namespace vb6 {
 		}
 		private struct SampleType1
 		{
-			long typeItem1;
-			long typeItem2;
+			long typeItem1; 
+			long typeItem2; 
 		}
 		/**
 		 *  Sample private type within a class
 		 */
 		private struct SampleType2
 		{
-			long typeItem1;
-			long typeItem2;
+			long typeItem1; 
+			long typeItem2; 
 		}
 		private struct SampleType3
 		{
-			long typeItem1;
-			long typeItem2;
+			long typeItem1; 
+			long typeItem2; 
 		}
 		private int someInteger ; /**< \brief simple private integer value */
 		public string someString ; /**< \brief simple public string value */
