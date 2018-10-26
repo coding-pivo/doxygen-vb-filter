@@ -765,14 +765,15 @@ function findEndArgs(string) {
 #############################################################################
 # interfaces, classes, structures
 #############################################################################
-/^Interface[[:blank:]]+/ ||
+(/^Interface[[:blank:]]+/ ||
 /.*[[:blank:]]Interface[[:blank:]]+/ ||
 /^Class[[:blank:]]+/ ||
 /.*[[:blank:]]Class[[:blank:]]+/ ||
 /^Structure[[:blank:]]+/ ||
 /.*[[:blank:]]Structure[[:blank:]]+/ ||
 /^Type[[:blank:]]+/ ||
-/(friend|protected|private|public).*[[:blank:]]+Type[[:blank:]]+/ {
+/(friend|protected|private|public).*[[:blank:]]+Type[[:blank:]]+/) &&
+insideFunction==0 {
 	sub("Interface","interface");
 	sub("Class","class");
 	sub("Structure","struct");
@@ -856,7 +857,7 @@ isInherited==1{
 #############################################################################
 
 /^Property[[:blank:]]+/ ||
-/.*[[:blank:]]+Property[[:blank:]]+/ {
+/.*[[:blank:]]+Property[[:blank:]]+/ && insideFunction==0 {
 	sub("[(][)]","");
 
 	if (csharpStyledOutput==1)
