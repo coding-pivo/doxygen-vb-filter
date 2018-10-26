@@ -58,9 +58,13 @@ namespace vba {
 		/**
 		 *  simple integer value
 		 */
+		int someInteger; 
+		string someString; /**< \brief  simple string value */
+		long someLong; 
 		/**
 		 *  simple single value
 		 */
+		float someSingle; 
 	}
 	/**
 	 *  <summary>
