@@ -605,6 +605,9 @@ insideType==1 {
 /.*Declare[[:blank:]]+/ {
 	libName=gensub(".+Lib[[:blank:]]+\"([^ ]*)\"[[:blank:]].*","\\1","g");
 	if (match($0,"Alias")>0) aliasName=gensub(".+Alias[[:blank:]]+\"([^ ]*)\"[[:blank:]].*"," (Alias: \\1)","g");
+	if (isInherited==1){
+		endOfInheritance();
+	}
 	print appShift "/** Is imported from extern library: " libName aliasName " */";
 	if (csharpStyledOutput==1)
 		sub(/Declare[[:blank:]]+/,"extern ");
