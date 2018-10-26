@@ -355,14 +355,21 @@ printedFilename==0 {
 #############################################################################
 # Set flag if we are inside a function/sub to avoid processing keywords
 # like Enum, Sub, Function etc... within a function
+# 0 - Outside function/sub
+# 1 - At line fo function/sub definition
+# 2 - Inside a function/sub
 #############################################################################
+insideFunction==1 {
+	insideFunction=2
+}
+
 (/^Function[[:blank:]]+/ || /[[:blank:]]+Function[[:blank:]]+/ ||
 /^Sub[[:blank:]]+/ || /[[:blank:]]+Sub[[:blank:]]+/) && insideFunction==0 {
 	insideFunction=1
 }
 
 (/^[ \t]*End[[:blank:]]+Function/ || /^[ \t]*End[[:blank:]]+Sub/) &&
-insideFunction==1 {
+(insideFunction==2 {
 	insideFunction=0
 }
 
@@ -494,7 +501,7 @@ insideFunction==1 {
 #############################################################################
 # Enums
 #############################################################################
-/^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ && insideFunction==0 {
+/^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ && insideFunction!=2 {
 	sub("Enum","enum");
 	sub("+*[[:blank:]]As.*",""); # enums shouldn't have type definitions
 	print appShift $0"\n"appShift"{";
@@ -773,7 +780,7 @@ function findEndArgs(string) {
 /.*[[:blank:]]Structure[[:blank:]]+/ ||
 /^Type[[:blank:]]+/ ||
 /(friend|protected|private|public).*[[:blank:]]+Type[[:blank:]]+/) &&
-insideFunction==0 {
+insideFunction!=2 {
 	sub("Interface","interface");
 	sub("Class","class");
 	sub("Structure","struct");
@@ -857,7 +864,7 @@ isInherited==1{
 #############################################################################
 
 /^Property[[:blank:]]+/ ||
-/.*[[:blank:]]+Property[[:blank:]]+/ && insideFunction==0 {
+/.*[[:blank:]]+Property[[:blank:]]+/ && insideFunction!=2 {
 	sub("[(][)]","");
 
 	if (csharpStyledOutput==1)
@@ -910,7 +917,7 @@ isInherited==1{
 #############################################################################
 # process everything else
 #############################################################################
-/.*private[[:blank:]]+/ ||
+(/.*private[[:blank:]]+/ ||
 /.*public[[:blank:]]+/ ||
 /.*protected[[:blank:]]+/ ||
 /.*friend[[:blank:]]+/ ||
@@ -923,7 +930,8 @@ isInherited==1{
 /^Event[[:blank:]]+/ ||
 /.*[[:blank:]]+Event[[:blank:]]+/ ||
 /.*const[[:blank:]]+/ ||
-/.*[[:blank:]]+const[[:blank:]]+/ {
+/.*[[:blank:]]+const[[:blank:]]+/) &&
+insideFunction!=2 {
 		
 	# remove square brackets from reserved names
 	# but do not match array brackets
