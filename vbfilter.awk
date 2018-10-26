@@ -369,7 +369,7 @@ insideFunction==1 {
 }
 
 (/^[ \t]*End[[:blank:]]+Function/ || /^[ \t]*End[[:blank:]]+Sub/) &&
-(insideFunction==2 {
+insideFunction==2 {
 	insideFunction=0
 }
 
