@@ -66,6 +66,7 @@ BEGIN{
 	classNestCounter=0;
 	className[1]="";
 	insideVB6Class=0;
+	insideFunction=0;
 	insideVB6ClassName="";
 	insideVB6Header=0;
 	insideNamespace=0;
@@ -352,6 +353,20 @@ printedFilename==0 {
 }
 
 #############################################################################
+# Set flag if we are inside a function/sub to avoid processing keywords
+# like Enum, Sub, Function etc... within a function
+#############################################################################
+(/^Function[[:blank:]]+/ || /[[:blank:]]+Function[[:blank:]]+/ ||
+/^Sub[[:blank:]]+/ || /[[:blank:]]+Sub[[:blank:]]+/) && insideFunction==0 {
+	insideFunction=1
+}
+
+(/^[ \t]*End[[:blank:]]+Function/ || /^[ \t]*End[[:blank:]]+Sub/) &&
+insideFunction==1 {
+	insideFunction=0
+}
+
+#############################################################################
 # simple rewrites
 # vb -> c# style
 # 
@@ -479,7 +494,7 @@ printedFilename==0 {
 #############################################################################
 # Enums
 #############################################################################
-/^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ {
+/^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ && insideFunction==0 {
 	sub("Enum","enum");
 	sub("+*[[:blank:]]As.*",""); # enums shouldn't have type definitions
 	print appShift $0"\n"appShift"{";
