@@ -1,14 +1,14 @@
 /**
- * @file VB6Form.frm
- * \brief Single VB6 class module, defining VB6Form
+ * @file VBAForm.frm
+ * \brief Single VB6 class module, defining VBAForm
  */
 namespace vba {
 	 /**
-	 *  \brief VB6 Form Example
-	 *  \file VB6Form.frm
-	 *  \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Form.frm">VB6Form.frm</A>
+	 *  \brief VBA Form Example
+	 *  \file VBAForm.frm
+	 *  \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/test/input/vba/VBAForm.frm">VBAForm.frm</A>
 	 */
-	class VB6Form
+	class VBAForm
 	{
 		/**
 		 *  \brief Button Click handler

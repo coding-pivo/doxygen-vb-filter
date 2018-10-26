@@ -1,7 +1,7 @@
 /**
- * @file VB6Module.bas
- *  <summary>VB6 Module Example</summary>
- *  <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Module.bas">VB6Module.bas</A></remarks>
+ * @file VBAModule.bas
+ *  <summary>VBA Module Example</summary>
+ *  <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VBAModule.bas">VBAModule.bas</A></remarks>
  */
 namespace vba {
 	/** Is imported from extern library: kernel32.dll */
@@ -14,7 +14,7 @@ namespace vba {
 	public double gl_test;
 	/**
 	 *  <summary>
-	 *  simple VB6 Public Enum
+	 *  simple VBA Public Enum
 	 *  </summary>
 	 */
 	public enum SampleEnum1
@@ -30,7 +30,7 @@ namespace vba {
 	}
 	/**
 	 *  <summary>
-	 *  simple VB6 Private Enum
+	 *  simple VBA Private Enum
 	 *  </summary>
 	 */
 	private enum SampleEnum2
@@ -50,7 +50,7 @@ namespace vba {
 	}
 	/**
 	 *  <summary>
-	 *  simple VBA/VB6 Type
+	 *  simple VBA Type
 	 *  </summary>
 	 */
 	public struct SampleVBAType

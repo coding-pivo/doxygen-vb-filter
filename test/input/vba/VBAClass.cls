@@ -6,16 +6,16 @@ BEGIN
   DataSourceBehavior  = 0  'vbNone
   MTSTransactionMode  = 0  'NotAnMTSObject
 END
-Attribute VB_Name = "VB6Class4"
+Attribute VB_Name = "VBAClass1"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
     ''' <summary>
-    ''' VB6 class example
+    ''' VBA class example
     ''' </summary>
-    ''' \file VB6Class4.cls
-    ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class4.cls">VB6Class4.cls</A>
+    ''' \file VBAClass1.cls
+    ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/test/input/vba/VBAClass1.cls">VBAClass1.cls</A>
     
     ''' External declaration for win32 function
     Private Declare Function GetPrivateProfileStringA Lib "kernel32" ( _

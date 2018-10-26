@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin VB.Form VB6Form 
+Begin VB.Form VBAForm 
    Caption         =   "Form1"
    ClientHeight    =   1965
    ClientLeft      =   120
@@ -34,14 +34,14 @@ Begin VB.Form VB6Form
       Width           =   975
    End
 End
-Attribute VB_Name = "VB6Form"
+Attribute VB_Name = "VBAForm"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-' \brief VB6 Form Example
-' \file VB6Form.frm
-' \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Form.frm">VB6Form.frm</A>
+' \brief VBA Form Example
+' \file VBAForm.frm
+' \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/test/input/vba/VBAForm.frm">VBAForm.frm</A>
 
 ' \brief Button Click handler
 Private Sub Command1_Click()

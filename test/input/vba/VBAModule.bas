@@ -1,6 +1,6 @@
-Attribute VB_Name = "VB6Module"
-' <summary>VB6 Module Example</summary>
-' <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Module.bas">VB6Module.bas</A></remarks>
+Attribute VB_Name = "VBAModule"
+' <summary>VBA Module Example</summary>
+' <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VBAModule.bas">VBAModule.bas</A></remarks>
 
 Public Declare Function GetTickCount Lib "kernel32.dll" () As Long
 
@@ -14,7 +14,7 @@ Public Declare Function WritePrivateProfileStringA Lib "kernel32" ( _
 Public gl_test As Double
 
 ' <summary>
-' simple VB6 Public Enum
+' simple VBA Public Enum
 ' </summary>
 Public Enum SampleEnum1
     [_First] = 1
@@ -26,7 +26,7 @@ Public Enum SampleEnum1
 End Enum
 
 ' <summary>
-' simple VB6 Private Enum
+' simple VBA Private Enum
 ' </summary>
 Private Enum SampleEnum2
     [_First] = 1
@@ -40,7 +40,7 @@ Private Enum SampleEnum2
 End Enum
 
 ' <summary>
-' simple VBA/VB6 Type
+' simple VBA Type
 ' </summary>
 Public Type SampleVBAType
     ''' simple integer value
