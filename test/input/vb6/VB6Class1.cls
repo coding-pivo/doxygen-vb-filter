@@ -6,7 +6,7 @@ BEGIN
   DataSourceBehavior  = 0  'vbNone
   MTSTransactionMode  = 0  'NotAnMTSObject
 END
-Attribute VB_Name = "VB6Class"
+Attribute VB_Name = "VB6Class1"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
@@ -14,8 +14,8 @@ Attribute VB_Exposed = False
     ''' <summary>
     ''' VB6 class example
     ''' </summary>
-    ''' \file VB6Class.cls
-    ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class.cls">VB6Class.cls</A>
+    ''' \file VB6Class1.cls
+    ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class1.cls">VB6Class1.cls</A>
     
     Private Enum SampleEnum
         [_First] = 1
