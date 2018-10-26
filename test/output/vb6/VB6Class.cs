@@ -11,26 +11,32 @@ namespace vb6 {
 	 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class.cls">VB6Class.cls</A>
 	 */
 	class VB6Class
-	private enum SampleEnum
 	{
-		[_First] = 1,
-		enumItem1 = 1,
-		enumItem2 = 2,
-		enumItem3 = 3,
-		[_Last] = 3
-	}
-	{
+		private enum SampleEnum
+		{
+			[_First] = 1,
+			enumItem1 = 1,
+			enumItem2 = 2,
+			enumItem3 = 3,
+			[_Last] = 3
+		}
 		private struct SampleType1
 		{
+			long typeItem1;
+			long typeItem2;
 		}
 		/**
 		 *  Sample private type within a class
 		 */
 		private struct SampleType2
 		{
+			long typeItem1;
+			long typeItem2;
 		}
 		private struct SampleType3
 		{
+			long typeItem1;
+			long typeItem2;
 		}
 		private int someInteger ; /**< \brief simple private integer value */
 		public string someString ; /**< \brief simple public string value */
@@ -117,7 +123,6 @@ namespace vb6 {
 		 *  <remarks></remarks>
 		 */
 		public void SampleMethodWithParams(string pFirst, ref int pPointer);
-		If d = 2 Then Exit void Else d = 3;
 		/**
 		 *  <summary>
 		 *  simple constructor
@@ -125,7 +130,6 @@ namespace vb6 {
 		 *  <remarks></remarks>
 		 */
 		private void Class_Initialize();
-		s = "This is a  as example";
 		/**
 		 *  <summary>
 		 *  some event
