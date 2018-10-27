@@ -150,6 +150,11 @@ Attribute VB_Exposed = False
     Private Sub Class_Initialize()
         Dim s As String
         s = "This is a Function as example"
+		s = "This is only an Enum string"
+		s = "This is a String example"
+		s = "This is not a Sub string"
+		s = "This is not a Declare example"
+		s = "This is not an Implements example"
     End Sub
     
     ''' <summary>
