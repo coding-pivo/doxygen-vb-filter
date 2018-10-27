@@ -67,6 +67,7 @@ BEGIN{
 	className[1]="";
 	insideVB6Class=0;
 	insideFunction=0;
+	insideInterface=0;
 	insideVB6ClassName="";
 	insideVB6Header=0;
 	insideNamespace=0;
@@ -353,6 +354,17 @@ printedFilename==0 {
 }
 
 #############################################################################
+# Set insideInterface variable before setting insideFunction variable
+#############################################################################
+/^Interface[[:blank:]]+/ || /[[:blank:]]+Interface[[:blank:]]+/ {
+	insideInterface=1
+}
+
+/^[ \t]*End[[:blank:]]+Interface/ && insideInterface==1 {
+	insideInterface=0
+}
+
+#############################################################################
 # Set flag if we are inside a function/sub to avoid processing keywords
 # like Enum, Sub, Function etc... within a function
 # 0 - Outside function/sub
@@ -363,10 +375,10 @@ insideFunction==1 {
 	insideFunction=2
 }
 
-# Ignore Function when it's only a Declare statement
 (/^Function[[:blank:]]+/ || /[[:blank:]]+Function[[:blank:]]+/ ||
 /^Sub[[:blank:]]+/ || /[[:blank:]]+Sub[[:blank:]]+/) && insideFunction==0 &&
-(!(/^Declare[[:blank:]]+/ || /[[:blank:]]+Declare[[:blank:]]+/)) {
+(!(/^Declare[[:blank:]]+/ || /[[:blank:]]+Declare[[:blank:]]+/)) &&
+insideInterface==0 {
 	insideFunction=1
 }
 
