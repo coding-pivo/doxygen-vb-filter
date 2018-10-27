@@ -363,6 +363,7 @@ insideFunction==1 {
 	insideFunction=2
 }
 
+# Ignore Function when it's only a Declare statement
 (/^Function[[:blank:]]+/ || /[[:blank:]]+Function[[:blank:]]+/ ||
 /^Sub[[:blank:]]+/ || /[[:blank:]]+Sub[[:blank:]]+/) && insideFunction==0 {
 	insideFunction=1
