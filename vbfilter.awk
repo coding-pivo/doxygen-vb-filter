@@ -559,7 +559,7 @@ insideEnum==1 {
 # Declares
 #############################################################################
 
-/.*Declare[[:blank:]]+/ {
+/.*Declare[[:blank:]]+/ && insideFunction!=2 {
 	libName=gensub(".+Lib[[:blank:]]+\"([^ ]*)\"[[:blank:]].*","\\1","g");
 	if (match($0,"Alias")>0) aliasName=gensub(".+Alias[[:blank:]]+\"([^ ]*)\"[[:blank:]].*"," (Alias: \\1)","g");
 	print appShift "/** Is imported from extern library: " libName aliasName " */";
