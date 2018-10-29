@@ -546,8 +546,7 @@ insideEnum==1 {
 ## converts a single type definition to c#
 ##  "Var As Type" -> "Type Var"
 ##  "Var As New Type" -> "Type Var = new Type()"
-function convertSimpleType(Param)
-{
+function convertSimpleType(Param) {
 	l=split(Param, aParam, " ")
 	newParam="";
 	for (j = 1; j <= l; j++) {
@@ -755,7 +754,7 @@ function findEndArgs(string) {
 	sub("Class","class");
 	sub("Structure","struct");
 	sub("Type","struct");
-	if(isInherited) {
+	if(isInherited==1) {
 		endOfInheritance();
 	}
 	classNestCounter++;
@@ -772,8 +771,7 @@ function findEndArgs(string) {
 	sub("New", "New " className[classNestCount]);
 }
 
-function endOfInheritance()
-{
+function endOfInheritance() {
 		isInherited=0;
 		if (lastLine!="") print appShift lastLine;
 		print appShift "{";
