@@ -17,7 +17,7 @@ Attribute VB_Exposed = False
     ''' \file VB6Class3.cls
     ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class3.cls">VB6Class3.cls</A>
     
-    Private Declare Function GetPrivateProfileStringA Lib "kernel32" ( _
+    Private Declare Function GetPrivateProfileStringA Lib "kernel32" ( _ 
         ByVal strSection As String, _
         ByVal strKey As String, _
         ByVal strDefault As String, _
