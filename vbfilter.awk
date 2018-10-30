@@ -877,8 +877,8 @@ isInherited==1{
 # Properties
 #############################################################################
 
-/^Property[[:blank:]]+/ ||
-/.*[[:blank:]]+Property[[:blank:]]+/ && insideFunction!=2 {
+(/^Property[[:blank:]]+/ ||
+/.*[[:blank:]]+Property[[:blank:]]+/) && insideFunction!=2 {
 	sub("[(][)]","");
 
 	if (csharpStyledOutput==1)
