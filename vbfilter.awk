@@ -110,7 +110,7 @@ function trim(s) {
 #############################################################################
 # apply dos2unix
 #############################################################################
-UnixLineBreaks==1{
+UnixLineBreaks==1 {
 	sub(/\r$/,"")
 }
 
@@ -124,12 +124,12 @@ UnixLineBreaks==1{
 #############################################################################
 # merge multiline statements into one line
 #############################################################################
-fullLine==0{
+fullLine==0 {
 	fullLine=1;
 	$0= lastLine$0;
 	lastLine="";
 }
-/_$/{
+/_$/ {
 	fullLine=0;
  	sub(/_$/,"");
  	lastLine=$0;
@@ -174,7 +174,7 @@ fullLine==0{
 }
 
 # detect the end of VB6 header
-(!(/^Attribute[[:blank:]]+.*/)) && insideVB6Class==1 && insideVB6Header<=1{
+(!(/^Attribute[[:blank:]]+.*/)) && insideVB6Class==1 && insideVB6Header<=1 {
 	if (insideVB6Header==0) {
 		next;
 	} else {
@@ -268,7 +268,7 @@ printedFilename==0 {
 #
 # can be disabled by leadingNamespace=0;
 #############################################################################
-(!/^Imports[[:blank:]]+/) && leadingNamespace<=1 && fileHeader==2{
+(!/^Imports[[:blank:]]+/) && leadingNamespace<=1 && fileHeader==2 {
 	if (leadingNamespace==1) {	# leading namespace enabled?
 		# if inside VB6 file, then namespace was already printed
 		if (insideVB6Class!=1) {
@@ -317,7 +317,7 @@ printedFilename==0 {
 		# instead of printing it and process the end of
 		# class/interface declaration
 		
-		if (isInherited==1){
+		if (isInherited==1) {
 			endOfInheritance();
 		}
 		print appShift "/**"
@@ -557,7 +557,7 @@ insideFunction==2 {
 	next;
 }
 
-/^[ \t]*End[[:blank:]]+Enum/ && insideEnum==1{
+/^[ \t]*End[[:blank:]]+Enum/ && insideEnum==1 {
 	print appShift lastEnumLine;
 	ReduceShift()
 	print appShift "}"
@@ -763,8 +763,6 @@ function findEndArgs(string) {
 		# loop over params and convert them
 		if (lParams > 0) {
 			for (i = 1; i <= lParams; i++) {
-			
-				
 				if(match(aParams[i],/.+[(][)].*/)) {
 					lParam=split(aParams[i], aParam , " ")
 					for (j = 1; j <= lParam; j++) {
@@ -782,7 +780,6 @@ function findEndArgs(string) {
 						}
 					}
 				}
-			
 				if (i == 1) {
 					Params=convertSimpleType(aParams[i]);
 				} else {
@@ -873,7 +870,7 @@ function findEndArgs(string) {
 	next;
 }
 
-/^.*End[[:blank:]]+Namespace/ && insideNamespace==1{
+/^.*End[[:blank:]]+Namespace/ && insideNamespace==1 {
 	ReduceShift();
 	print appShift "}";
 	insideNamespace=0;
