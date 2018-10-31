@@ -75,7 +75,6 @@ BEGIN{
 	isInherited=0;
 	lastLine="";
 	appShift="";
-	
 }
 
 #############################################################################
@@ -133,7 +132,6 @@ fullLine==0{
  	sub(/_$/,"");
  	lastLine=$0;
  	next;
-
 }
 
 #############################################################################
@@ -144,12 +142,11 @@ fullLine==0{
 	next;
 }
 
-
 #############################################################################
 # VB6 file headers including class definitions
 #############################################################################
 
-# if file begins with a class definition, swith to VB6 mode
+# if file begins with a class definition, switch to VB6 mode
 /.*[[:blank:]]+CLASS/ ||
 /.*[[:blank:]]+VB\.Form[[:blank:]]+/ ||
 /.*[[:blank:]]+VB\.UserControl[[:blank:]]+/ {
@@ -182,7 +179,6 @@ fullLine==0{
 		insideVB6Header=2
 	}
 }
-
 
 #############################################################################
 # parse file header comment
@@ -244,7 +240,6 @@ printedFilename==0 {
 		}
 }
 
-
 #############################################################################
 # skip empty lines
 #############################################################################
@@ -291,8 +286,6 @@ printedFilename==0 {
 		print appShift "class " insideVB6ClassName;
 	}
 }
-
-
 
 #############################################################################
 # handle comments
@@ -394,9 +387,11 @@ printedFilename==0 {
 /^.*Private[[:blank:]]+/ {
 	sub("Private[[:blank:]]+","private ");
 }
+
 /^.*Public[[:blank:]]+/ {
 	sub("Public[[:blank:]]+","public ");
 }
+
 # friend is the same as internal in c#, but Doxygen doesn't support internal,
 # so make it private to get it recognized by Doxygen) and Friend appear
 # in Documentation
@@ -419,6 +414,7 @@ printedFilename==0 {
 	else 
 		sub("Shared", "static Shared");
 }
+
 # Replace "Partial" by "partial" and swap order of "partial" and "public" or "private"
 /^.*Partial[[:blank:]]+/ {
 	sub("Partial","partial");
@@ -639,8 +635,6 @@ insideType==1 {
 	sub("Alias[[:blank:]]+[^[:blank:]]+","");
 }
 
-
-
 #############################################################################
 # types (handle As and Of)
 #############################################################################
@@ -652,8 +646,7 @@ insideType==1 {
 ## converts a single type definition to c#
 ##  "Var As Type" -> "Type Var"
 ##  "Var As New Type" -> "Type Var = new Type()"
-function convertSimpleType(Param)
-{
+function convertSimpleType(Param) {
 	l=split(Param, aParam, " ")
 	newParam="";
 	for (j = 1; j <= l; j++) {
@@ -827,7 +820,6 @@ function findEndArgs(string) {
 #############################################################################
 # Rewrite Subs handling events if csharpStyledOutput=1
 #############################################################################
-
 /.*[[:blank:]]Handles[[:blank:]]+/ && (csharpStyledOutput==1) {
 	name=gensub(/(.*)[[:blank:]]+Handles[[:blank:]]+(\w+)/,"\\2","g",$0);
 	print appShift "/// \\remark Handles the " name " event.";
@@ -864,7 +856,7 @@ function findEndArgs(string) {
 	sub("Interface","interface");
 	sub("Class","class");
 	sub("Structure","struct");
-	if(isInherited) {
+	if(isInherited==1) {
 		endOfInheritance();
 	}
 	classNestCounter++;
@@ -881,8 +873,7 @@ function findEndArgs(string) {
 	sub("New", "New " className[classNestCount]);
 }
 
-function endOfInheritance()
-{
+function endOfInheritance() {
 		isInherited=0;
 		if (lastLine!="") print appShift lastLine;
 		print appShift "{";
@@ -923,7 +914,6 @@ isInherited==1{
 	next;
 }
 
-
 #############################################################################
 # Replace Implements with a comment linking to the interface member,
 #   since Doxygen does not recognize members with names that differ
@@ -940,7 +930,6 @@ isInherited==1{
 #############################################################################
 # Properties
 #############################################################################
-
 /^Property[[:blank:]]+/ ||
 /.*[[:blank:]]+Property[[:blank:]]+/ {
 	sub("[(][)]","");
@@ -986,7 +975,6 @@ isInherited==1{
 	instideVB6Property = 0;
 	next;
 }
-
 
 /.*Operator[[:blank:]]+/ {
 	$0=gensub("Operator[[:blank:]]+([^ ]+)[[:blank:]]+","\\1 operator ","g",$0);
