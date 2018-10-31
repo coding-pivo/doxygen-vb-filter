@@ -66,6 +66,8 @@ BEGIN{
 	classNestCounter=0;
 	className[1]="";
 	insideVB6Class=0;
+	insideFunction=0;
+	insideInterface=0;
 	insideVB6ClassName="";
 	insideVB6Header=0;
 	insideNamespace=0;
@@ -378,6 +380,40 @@ printedFilename==0 {
 }
 
 #############################################################################
+# Set insideInterface variable before setting insideFunction variable
+#############################################################################
+/^Interface[[:blank:]]+/ || /[[:blank:]]+Interface[[:blank:]]+/ {
+	insideInterface=1
+}
+
+/^[ \t]*End[[:blank:]]+Interface/ && insideInterface==1 {
+	insideInterface=0
+}
+
+#############################################################################
+# Set flag if we are inside a function/sub to avoid processing keywords
+# like Enum, Sub, Function etc... within a function
+# 0 - Outside function/sub
+# 1 - At line fo function/sub definition
+# 2 - Inside a function/sub
+#############################################################################
+insideFunction==1 {
+	insideFunction=2
+}
+
+(/^Function[[:blank:]]+/ || /[[:blank:]]+Function[[:blank:]]+/ ||
+/^Sub[[:blank:]]+/ || /[[:blank:]]+Sub[[:blank:]]+/) && insideFunction==0 &&
+(!(/^Declare[[:blank:]]+/ || /[[:blank:]]+Declare[[:blank:]]+/)) &&
+insideInterface==0 {
+	insideFunction=1
+}
+
+(/^[ \t]*End[[:blank:]]+Function/ || /^[ \t]*End[[:blank:]]+Sub/) &&
+insideFunction==2 {
+	insideFunction=0
+}
+
+#############################################################################
 # simple rewrites
 # vb -> c# style
 # 
@@ -508,7 +544,7 @@ printedFilename==0 {
 #############################################################################
 # enums
 #############################################################################
-/^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ {
+/^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ && insideFunction!=2 {
 	sub("Enum","enum");
 	sub("+*[[:blank:]]As.*",""); # enums shouldn't have type definitions
 	if (isInherited==1) {
@@ -554,7 +590,7 @@ insideEnum==1 {
 #############################################################################
 # types
 #############################################################################
-/^Type[[:blank:]]+/ || /[[:blank:]]+Type[[:blank:]]+/ {
+/^Type[[:blank:]]+/ || /[[:blank:]]+Type[[:blank:]]+/ && insideFunction!=2 {
 	sub("Type","struct");
 	sub("+*[[:blank:]]As.*",""); # types shouldn't have type definitions
 	if (isInherited==1) {
@@ -616,7 +652,7 @@ insideType==1 {
 # Declares
 #############################################################################
 
-/.*Declare[[:blank:]]+/ {
+/.*Declare[[:blank:]]+/ && insideFunction!=2 {
 	libName=gensub(".+Lib[[:blank:]]+\"([^ ]*)\"[[:blank:]].*","\\1","g");
 	if (match($0,"Alias")>0) aliasName=gensub(".+Alias[[:blank:]]+\"([^ ]*)\"[[:blank:]].*"," (Alias: \\1)","g");
 	if (isInherited==1){
@@ -847,12 +883,13 @@ function findEndArgs(string) {
 #############################################################################
 # interfaces, classes, structures
 #############################################################################
-/^Interface[[:blank:]]+/ ||
+(/^Interface[[:blank:]]+/ ||
 /.*[[:blank:]]Interface[[:blank:]]+/ ||
 /^Class[[:blank:]]+/ ||
 /.*[[:blank:]]Class[[:blank:]]+/ ||
 /^Structure[[:blank:]]+/ ||
-/.*[[:blank:]]Structure[[:blank:]]+/ {
+/.*[[:blank:]]Structure[[:blank:]]+/) &&
+insideFunction!=2 {
 	sub("Interface","interface");
 	sub("Class","class");
 	sub("Structure","struct");
@@ -930,8 +967,8 @@ isInherited==1{
 #############################################################################
 # Properties
 #############################################################################
-/^Property[[:blank:]]+/ ||
-/.*[[:blank:]]+Property[[:blank:]]+/ {
+(/^Property[[:blank:]]+/ ||
+/.*[[:blank:]]+Property[[:blank:]]+/) && insideFunction!=2 {
 	sub("[(][)]","");
 
 	if (csharpStyledOutput==1)
@@ -983,7 +1020,7 @@ isInherited==1{
 #############################################################################
 # process everything else
 #############################################################################
-/.*private[[:blank:]]+/ ||
+(/.*private[[:blank:]]+/ ||
 /.*public[[:blank:]]+/ ||
 /.*protected[[:blank:]]+/ ||
 /.*friend[[:blank:]]+/ ||
@@ -996,7 +1033,8 @@ isInherited==1{
 /^Event[[:blank:]]+/ ||
 /.*[[:blank:]]+Event[[:blank:]]+/ ||
 /.*const[[:blank:]]+/ ||
-/.*[[:blank:]]+const[[:blank:]]+/ {
+/.*[[:blank:]]+const[[:blank:]]+/) &&
+insideFunction!=2 {
 		
 	# remove square brackets from reserved names
 	# but do not match array brackets
