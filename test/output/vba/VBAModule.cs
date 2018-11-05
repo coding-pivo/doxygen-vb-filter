@@ -4,9 +4,9 @@
  *  <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VBAModule.bas">VBAModule.bas</A></remarks>
  */
 namespace vba {
-	/** Is imported from extern library: kernel32.dll */
+	/** \remark Is imported from external library: kernel32.dll */
 	public extern  long GetTickCount();
-	/** Is imported from extern library: kernel32 */
+	/** \remark Is imported from external library: kernel32 */
 	public extern  long WritePrivateProfileStringA(string strSection, string strKey, string strString, string strFileNameName);
 	/**
 	 *  Global variable example
