@@ -562,7 +562,7 @@ insideEnum==1 {
 /.*Declare[[:blank:]]+/ && insideFunction!=2 {
 	libName=gensub(".+Lib[[:blank:]]+\"([^ ]*)\"[[:blank:]].*","\\1","g");
 	if (match($0,"Alias")>0) aliasName=gensub(".+Alias[[:blank:]]+\"([^ ]*)\"[[:blank:]].*"," (Alias: \\1)","g");
-	print appShift "/** Is imported from extern library: " libName aliasName " */";
+	print appShift "/** \\remark Is imported from external library: " libName aliasName " */";
 	if (csharpStyledOutput==1)
 		sub(/Declare[[:blank:]]+/,"extern ");
 	libName="";
