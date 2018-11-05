@@ -12,9 +12,9 @@ namespace vba {
 	 */
 	class VBAClass2
 	{
-		/** Is imported from extern library: kernel32 */
+		/** \remark Is imported from external library: kernel32 */
 		private extern  long GetPrivateProfileStringA(string strSection, string strKey, string strDefault, string strReturnedString, long lngSize, string strFileNameName);
-		/** Is imported from extern library: oleaut32.dll */
+		/** \remark Is imported from external library: oleaut32.dll */
 		private extern  long SafeArrayGetDim(ref Any[] pArray);
 	}
 }
