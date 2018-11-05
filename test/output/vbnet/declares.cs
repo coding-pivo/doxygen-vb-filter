@@ -25,7 +25,7 @@ namespace vbnet {
 		 *  <param name="lParam">Additional message-specific information.</param>
 		 *  <returns>If the function succeeds, the return value is nonzero.</returns>
 		 */
-		/** Is imported from extern library: user32.dll (Alias: PostMessageA) */
+		/** \remark Is imported from external library: user32.dll (Alias: PostMessageA) */
 		private extern  bool PostMessage(int hWnd, int uMsg, int wParam, int lParam);
 		/**
 		 *  <summary>
@@ -34,7 +34,7 @@ namespace vbnet {
 		 *  <param name="handle">A handle to the window that should be activated and brought to the foreground.</param>
 		 *  <returns>If the window was brought to the foreground, the return value is nonzero.</returns>
 		 */
-		/** Is imported from extern library: user32.dll */
+		/** \remark Is imported from external library: user32.dll */
 		private extern  bool SetForegroundWindow(IntPtr handle);
 		/**
 		 *  <summary>
@@ -44,7 +44,7 @@ namespace vbnet {
 		 *  <param name="nCmdShow">Controls how the window is to be shown</param>
 		 *  <returns>If the window was previously visible, the return value is nonzero</returns>
 		 */
-		/** Is imported from extern library: user32.dll */
+		/** \remark Is imported from external library: user32.dll */
 		private extern  bool ShowWindow(IntPtr hWnd, SHOW_WINDOW nCmdShow);
 		/**
 		 *  <summary>
@@ -55,7 +55,7 @@ namespace vbnet {
 		 *  <returns>If the function succeeds, the return value is nonzero.</returns>
 		 *  <remarks></remarks>
 		 */
-		/** Is imported from extern library: user32 */
+		/** \remark Is imported from external library: user32 */
 		private extern  int GetWindowPlacement(IntPtr hwnd, ref WINDOWPLACEMENT lpwndpl);
 		/**
 		 *  <summary>
@@ -149,7 +149,7 @@ namespace vbnet {
 		 *  <param name="hwnd">A handle to the window or control.</param>
 		 *  <returns>If the function succeeds, the return value is the length, in characters, of the text.</returns>
 		 */
-		/** Is imported from extern library: user32.dll (Alias: GetWindowTextLengthA) */
+		/** \remark Is imported from external library: user32.dll (Alias: GetWindowTextLengthA) */
 		private extern  int GetWindowTextLength(int hwnd);
 		/**
 		 *  <summary>
@@ -160,7 +160,7 @@ namespace vbnet {
 		 *  <param name="cch">The maximum number of characters to copy to the buffer, including the null character.</param>
 		 *  <returns>If the function succeeds, the return value is the length, in characters, of the copied string, not including the terminating null character.</returns>
 		 */
-		/** Is imported from extern library: user32 (Alias: GetWindowTextA) */
+		/** \remark Is imported from external library: user32 (Alias: GetWindowTextA) */
 		private extern  int GetWindowText(int hwnd, string lpString, int cch);
 		/**
 		 *  <summary>
@@ -170,7 +170,7 @@ namespace vbnet {
 		 *  <param name="lpdwProcessId">A pointer to a variable that receives the process identifier.</param>
 		 *  <returns>The return value is the identifier of the thread that created the window. </returns>
 		 */
-		/** Is imported from extern library: user32 */
+		/** \remark Is imported from external library: user32 */
 		public extern Auto  int GetWindowThreadProcessId(int hwnd, ref int lpdwProcessId);
 		/**
 		 *  <summary>
@@ -180,7 +180,7 @@ namespace vbnet {
 		 *  <param name="lParam">An application-defined value to be passed to the callback function.</param>
 		 *  <returns>If the function succeeds, the return value is nonzero.</returns>
 		 */
-		/** Is imported from extern library: user32 */
+		/** \remark Is imported from external library: user32 */
 		private extern  int EnumWindows(EnumWindowsCallBack lpEnumFunc, int lParam);
 	}
 }

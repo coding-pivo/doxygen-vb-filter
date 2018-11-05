@@ -658,7 +658,7 @@ insideType==1 {
 	if (isInherited==1){
 		endOfInheritance();
 	}
-	print appShift "/** Is imported from extern library: " libName aliasName " */";
+	print appShift "/** \\remark Is imported from external library: " libName aliasName " */";
 	if (csharpStyledOutput==1)
 		sub(/Declare[[:blank:]]+/,"extern ");
 	libName="";
