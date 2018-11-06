@@ -48,18 +48,18 @@ Option Base 0
 '    With this function we can read content of ini files by using
 '    section/key pairs
 '
-'\param strSection
+'\param[in] strSection
 '    The name of the section containing the key name
-'\param strKey
+'\param[in] strKey
 '    The name of the key whose associated string is to be retrieved
-'\param strDefault
+'\param[in] strDefault
 '    A default string. If the strKey key cannot be found in the ini file,
 '    GetPrivateProfileString copies the default string to the strReturnedString
-'\param strReturnedString
+'\param[out] strReturnedString
 '    The string to be received
-'\param lngSize
+'\param[out] lngSize
 '    Size of the returned string
-'\param strFileNameName
+'\param[in] strFileNameName
 '    name of the ini file
 '
 '\return
@@ -90,7 +90,7 @@ Public gl_log As Boolean
 
 
 '\brief A simple VB6/VBA private enum example
-Private Enum SampleEnum
+Private Enum SampleModuleEnum
     [_First] = 1
     First_Item = 1 'First enum item
     Second_Item = 2 'Second emum item
@@ -104,7 +104,7 @@ End Enum
 
 
 '\brief A simple VB6 structure example
-Public Structure SampleVB6Structure
+Public Structure SampleVB6ModuleStructure
     '\brief Simple private integer value
     Private someInteger As Integer
     ''' Simple public string value
@@ -118,7 +118,7 @@ End Structure
 '    A simple VBA/VB6 type declaration
 '\details
 '    A detailed description of a simple VBA/VB6 type
-Public Type SampleVBAType
+Public Type SampleVBAModuleType
     ''' A simple integer value
     someInteger As Integer
     someString As String ' A simple string value
@@ -136,9 +136,9 @@ End Type
 '\details
 '    This function will just return the second given parameter
 '
-'\param pFirst
+'\param[in] pFirst
 '    A simple parameter
-'\param aSecond
+'\param[in] aSecond
 '    Another simple array parameter
 '
 '\return
@@ -152,7 +152,7 @@ End Function
 
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 '\brief
-'    A simple method without parameter
+'    A simple method without parameters
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 Sub SampleModuleMethod()
 End Sub

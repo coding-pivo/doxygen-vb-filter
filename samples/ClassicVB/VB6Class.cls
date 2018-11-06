@@ -13,43 +13,51 @@ Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
 Option Base 0
-    ''' <summary>
-    ''' VB6 class example
-    ''' </summary>
-    ''' \file VB6Class.cls
-    ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class.cls">VB6Class.cls</A>
-    
-    '''
-    Private Declare Function WritePrivateProfileStringA Lib "kernel32" ( _
+'\class VB6Class
+'\brief A brief class description
+'\details A detailed description of this class
+
+
+
+    '\brief External function to write ini files
+    Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" ( _
         ByVal strSection As String, _
         ByVal strKey As String, _
         ByVal strString As String, _
         ByVal strFileNameName As String) As Long
-        
-    '''
-    Private Enum SampleEnum
+    
+    
+    
+    '\brief Enum definition example
+    Private Enum SampleClassEnum
         [_First] = 0
-        enumItem1 = 0
-        enumItem2 = 1
-        enumItem3 = 2
+        enumItem1 = 0 'First enum item
+        enumItem2 = 1 'Second enum item
+        enumItem3 = 2 'Third enum item
         [_Last] = 2
     End Enum
     
-    '''
-    Private Type SampleType
+    
+    
+    '\brief Type definition example
+    Private Type SampleClassType
         typeItem1 As Long
         typeItem2 As Double
     End Type
     
-    Private someInteger As Integer ' simple private integer value
-    Public someString As String    ' simple public string value
-    Private someObject As Object   ' some object
     
-    ''' <summary>
-    ''' simple property
-    ''' </summary>
-    ''' <value>some string</value>
-    ''' <returns>some string</returns>
+    
+    Private someInteger As Integer ' Simple private integer value
+    Public someString As String    ' Simple public string value
+    Private someObject As Object   ' Some private object
+    
+    
+    
+    '\brief
+    '    Simple property
+    '
+    '\returns
+    '    Some string
     Public Property Let StringProperty(value As String)
         someString = value
     End Property
@@ -57,20 +65,24 @@ Option Base 0
         StringProperty = someString
     End Property
     
-    ''' <summary>
-    ''' read-only property
-    ''' </summary>
-    ''' <value>integer value</value>
-    ''' <returns>some integer value</returns>
+    
+    
+    '\brief
+    '    Read-only property
+    '
+    '\returns
+    '    Some integer value
     Public Property Get IntegerProperty() As Integer
         IntegerProperty = someInteger
     End Property
     
-    ''' <summary>
-    ''' reference property
-    ''' </summary>
-    ''' <value>some object</value>
-    ''' <returns>some object</returns>
+    
+    
+    '\brief
+    '    Reference property
+    '
+    '\returns
+    '    Some object
     Public Property Set ObjectProperty(value As Object)
         Set someObject = value
     End Property
@@ -78,13 +90,14 @@ Option Base 0
         ObjectProperty = someObject
     End Property
     
-    ''' <summary>
-    ''' not working property
-    ''' </summary>
-    ''' <remarks>
-    ''' this property will be seen as read-only by the Doxygen vbfilter
-    ''' because Set does not precede get!
-    ''' </remarks>
+    
+    
+    '\brief
+    '    Not working property
+    '
+    '\remarks
+    '    This property will be seen as read-only by the Doxygen vbfilter
+    '    because set does not precede get!
     Public Property Get TestProperty() As Object
         ObjectProperty = someObject
     End Property
@@ -92,75 +105,98 @@ Option Base 0
         Set someObject = value
     End Property
     
-    ''' <summary>
-    ''' function with parameter
-    ''' </summary>
-    ''' <param name="pFirst">simple parameter</param>
-    ''' <returns>some double value</returns>
-    ''' <remarks></remarks>
-    Public Function SampleFunction(ByVal pFirst As Double) As Double
-        SampleFunction = pFirst
+    
+    
+    '\brief
+    '    Function with parameter
+    '
+    '\param[in] pFirst
+    '    simple parameter
+    '
+    '\returns
+    '    Some double value
+    Public Function SampleClassFunction1(ByVal pFirst As Double) As Double
+        SampleClassFunction1 = pFirst
     End Function
     
-    ''' <summary>
-    ''' function with an array as parameter
-    ''' </summary>
-    ''' <param name="arg1">simple long parameter</param>
-    ''' <param name="arg2">String array</param>
-    ''' <returns>some long value</returns>
-    ''' <remarks></remarks>
-    Public Function SampleFunction2(ByVal arg1 As Long, ByRef arg2() As String) As Long
-        SampleFunction2 = arg1
+    
+    
+    '\brief
+    '    Function with an array as parameter
+    '
+    '\param[in] arg1
+    '    Simple long parameter
+    '\param[in] arg2
+    '    String array
+    '\returns
+    '    A long value
+    Public Function SampleClassFunction2(ByVal arg1 As Long, ByRef arg2() As String) As Long
+        SampleClassFunction2 = arg1
     End Function
     
-    ''' <summary>
-    ''' function with an array as result
-    ''' </summary>
-    ''' <param name="arg1">simple long parameter</param>
-    ''' <returns>long array</returns>
-    ''' <remarks></remarks>
-    Public Function SampleFunction3(arg1 As Long) As Long()
+    
+    
+    '\brief
+    '    Function with an array as result
+    '
+    '\param[in] arg1
+    '    A simple long parameter
+    '
+    '\returns
+    '    Long array
+    Public Function SampleClassFunction3(arg1 As Long) As Long()
+        Dim i(1) As Long
+        SampleClassFunction3 = i
     End Function
     
-    ''' <summary>
-    ''' simple method
-    ''' </summary>
-    ''' <remarks></remarks>
-    Sub SampleMethod()
+    
+    
+    '\brief A simple method
+    Sub SampleClassMethod()
     End Sub
     
-    ''' <summary>
-    ''' method with parameters
-    ''' </summary>
-    ''' <param name="pFirst">simple param</param>
-    ''' <param name="pPointer">pointer</param>
-    ''' <remarks></remarks>
-    Public Sub SampleMethodWithParams(ByVal pFirst As String, ByRef pPointer As Integer)
+    '\brief
+    '    A simple method with parameters
+    '
+    '\param[in] pFirst
+    '    Simple parameter
+    '\param[in] pPointer
+    '    Pointer
+    '
+    '\remarks
+    '    Some remarks for this simple method
+    Public Sub SampleClassMethodWithParams(ByVal pFirst As String, ByRef pPointer As Integer)
     End Sub
     
-    ''' <summary>
-    ''' simple constructor
-    ''' </summary>
-    ''' <remarks></remarks>
+    
+    
+    '\brief Simple constructor
     Private Sub Class_Initialize()
     End Sub
     
-    ''' <summary>
-    ''' some event
-    ''' </summary>
-    ''' <param name="Sender">sender of object type</param>
-    ''' <remarks></remarks>
+    
+    
+    '\brief
+    '    Some event
+    '\details
+    '    Details about this famous event
+    '
+    '\param[in] Sender
+    '    Sender of object type
+    '
+    '\remarks
+    '    Some remarks for this event
     Public Event OnSomeEvent(ByVal Sender As Object)
     
-    ''' <summary>
-    ''' destruction event
-    ''' </summary>
+    
+    
+    '\brief Destruction event
     Event Destroy()
     
-    ''' <summary>
-    ''' simple destructor
-    ''' </summary>
-    ''' <remarks>Raises Destroy event</remarks>
+    
+    
+    '\brief Simple destructor
+    '\remarks Raises Destroy event
     Private Sub Class_Terminate()
         RaiseEvent Destroy
     End Sub
