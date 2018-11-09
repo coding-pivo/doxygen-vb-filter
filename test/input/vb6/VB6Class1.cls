@@ -41,9 +41,11 @@ Attribute VB_Exposed = False
         typeItem2 As Long
     End Type
     
-    Private someInteger As Integer ' simple private integer value
-    Public someString As String    ' simple public string value
-    Private someObject As Object   ' some object
+    Private someIntegerPublic As Integer  ' simple private integer value
+    Public someStringPrivate As String    ' simple public string value
+    Private someObjectProtected As Object ' some private object
+    Private someDoubleFriend As Double    ' some private double value
+    Public someSingleShared As Single     ' some public single value
     
     ''' <summary>
     ''' simple property

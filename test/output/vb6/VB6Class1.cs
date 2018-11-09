@@ -38,9 +38,11 @@ namespace vb6 {
 			long typeItem1; 
 			long typeItem2; 
 		}
-		private int someInteger ; /**< \brief simple private integer value */
-		public string someString ; /**< \brief simple public string value */
-		private object someObject ; /**< \brief some object */
+		private int someIntegerPublic ; /**< \brief simple private integer value */
+		public string someStringPrivate ; /**< \brief simple public string value */
+		private object someObjectProtected ; /**< \brief some private object */
+		private double someDoubleFriend ; /**< \brief some private double value */
+		public float someSingleShared ; /**< \brief some public single value */
 		/**
 		 *  <summary>
 		 *  simple property
