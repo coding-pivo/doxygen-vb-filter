@@ -394,16 +394,16 @@ insideFunction==2 {
 # keywords used by doxygen must be rewritten. All other rewrites
 # are optional and depend on the csharpStyledOutput setting.
 #############################################################################
-/^.*Private[[:blank:]]+/ {
+/^Private[[:blank:]]+/ || /[[:blank:]]+Private[[:blank:]]+/ {
 	sub("Private[[:blank:]]+","private ");
 }
-/^.*Public[[:blank:]]+/ {
+/^Public[[:blank:]]+/ || /[[:blank:]]+Public[[:blank:]]+/ {
 	sub("Public[[:blank:]]+","public ");
 }
 # friend is the same as internal in c#, but Doxygen doesn't support internal,
 # so make it private to get it recognized by Doxygen) and Friend appear
 # in Documentation
-/^.*Friend[[:blank:]]+/ {
+/^Friend[[:blank:]]+/ || /[[:blank:]]+Friend[[:blank:]]+/ {
 	if (csharpStyledOutput==1)
 		sub("Friend[[:blank:]]+","private Friend ");
 	else {
@@ -412,11 +412,11 @@ insideFunction==2 {
 	}
 }
 
-/^.*Protected[[:blank:]]+/ {
+/^Protected[[:blank:]]+/ || /[[:blank:]]+Protected[[:blank:]]+/ {
 	sub("Protected[[:blank:]]+","protected ");
 }
 
-/^.*Shared[[:blank:]]+/ {
+/^Shared[[:blank:]]+/ || /[[:blank:]]+Shared[[:blank:]]+/ {
 	if (csharpStyledOutput==1)
 		sub("Shared", "static");
 	else 
