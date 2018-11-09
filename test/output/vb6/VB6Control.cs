@@ -19,6 +19,12 @@ namespace vb6 {
 		const m_def_Enabled = 0;
 		const m_def_BackStyle = 0;
 		const m_def_BorderStyle = 0;
+		private long m_BackColor;
+		private long m_ForeColor;
+		private bool m_Enabled;
+		private Font m_Font;
+		private int m_BackStyle;
+		private int m_BorderStyle;
 		event Click();
 		event DblClick();
 		event KeyDown(int KeyCode, int Shift);
