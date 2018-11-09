@@ -243,9 +243,15 @@ printedFilename==0 {
 }
 
 #############################################################################
-# skip empty lines
+# skip empty lines or finish comment when inside a comment block
 #############################################################################
-/^$/ { next; }
+/^$/ {
+	if (insideComment==1) {
+		insideComment=0
+		print appShift " */"
+	}
+	next;
+}
 
 #############################################################################
 # convert Imports to C# style
