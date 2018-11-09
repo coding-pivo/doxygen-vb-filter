@@ -364,6 +364,11 @@ printedFilename==0 {
 /^.*Public[[:blank:]]+/ {
 	sub("Public[[:blank:]]+","public ");
 }
+
+/^Dim[[:blank:]]+/ || /[[:blank:]]+Dim[[:blank:]]+/ {
+	sub("Dim","private");
+}
+
 # friend is the same as internal in c#, but Doxygen doesn't support internal,
 # so make it private to get it recognized by Doxygen) and Friend appear
 # in Documentation
