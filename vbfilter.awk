@@ -366,7 +366,7 @@ printedFilename==0 {
 }
 
 /^Dim[[:blank:]]+/ || /[[:blank:]]+Dim[[:blank:]]+/ {
-	sub("Dim","private");
+	sub("Dim[[:blank:]]+","private ");
 }
 
 # friend is the same as internal in c#, but Doxygen doesn't support internal,
