@@ -87,6 +87,8 @@ namespace vb6 {
 	 *  <summary>
 	 *  function with parameter
 	 *  </summary>
+	 */
+	/**
 	 *  <param name="pFirst">simple parameter</param>
 	 *  <returns>some double value</returns>
 	 *  <remarks>Test remark</remarks>

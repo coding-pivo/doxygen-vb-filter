@@ -107,6 +107,8 @@ namespace vbnet {
 			 *  some event
 			 *  </summary>
 			 *  <param name="Sender">sender of object type</param>
+			 */
+			/**
 			 *  <param name="args">event arguments</param>
 			 *  <remarks></remarks>
 			 */
