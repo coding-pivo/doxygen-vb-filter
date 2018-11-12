@@ -46,6 +46,7 @@ Attribute VB_Exposed = False
     Private someObjectProtected As Object ' some private object
     Private someDoubleFriend As Double    ' some private double value
     Public someSingleShared As Single     ' some public single value
+    Public someBooleanImports As Boolean  ' some public boolean value
     
     ''' <summary>
     ''' simple property

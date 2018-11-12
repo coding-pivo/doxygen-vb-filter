@@ -43,6 +43,7 @@ namespace vb6 {
 		private object someObjectProtected ; /**< \brief some private object */
 		private double someDoubleFriend ; /**< \brief some private double value */
 		public float someSingleShared ; /**< \brief some public single value */
+		public bool someBooleanImports ; /**< \brief some public boolean value */
 		/**
 		 *  <summary>
 		 *  simple property
