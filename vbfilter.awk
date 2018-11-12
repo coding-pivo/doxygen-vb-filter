@@ -259,9 +259,9 @@ printedFilename==0 {
 # remark: doxygen seems not to recognize
 #         c# using directives so converting Imports is maybe useless?
 #############################################################################
-/.*Imports[[:blank:]]+/ {
+/^Imports[[:blank:]]+/ || /[[:blank:]]+Imports[[:blank:]]+/ {
 	sub("Imports","using");
-	print $0";";
+	print appShift $0";";
 	insideImports=1;
 	next;
 }
