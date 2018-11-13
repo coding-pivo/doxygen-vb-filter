@@ -129,6 +129,7 @@ fullLine==0 {
 	$0= lastLine$0;
 	lastLine="";
 }
+
 /_$/ {
 	fullLine=0;
  	sub(/_$/,"");
@@ -187,7 +188,6 @@ fullLine==0 {
 #############################################################################
 
 /^[[:blank:]]*'/ && fileHeader!=2 {
-
 	# check if header already processed
 	if (fileHeader==0) {
 		fileHeader=1;
@@ -228,18 +228,18 @@ fileHeader!=2 {
 printedFilename==0 {
 	printedFilename=1;
 	file=gensub(/\\/, "/", "G", FILENAME)
-		if (insideVB6Class!=1) {
-			print "/// @file \n";
-		} else {
-			print "/**\n * @file \n";
-			print " * \\brief Single VB6 class module, defining " insideVB6ClassName;
-			print " */";
-			if (leadingNamespace==1) {	# leading namespace enabled?
-				# get project name from the file path
-				print "namespace "basename[split(file, basename , "/")-1]" {";
-				AddShift()
-			}
+	if (insideVB6Class!=1) {
+		print "/// @file \n";
+	} else {
+		print "/**\n * @file \n";
+		print " * \\brief Single VB6 class module, defining " insideVB6ClassName;
+		print " */";
+		if (leadingNamespace==1) {	# leading namespace enabled?
+			# get project name from the file path
+			print "namespace "basename[split(file, basename , "/")-1]" {";
+			AddShift()
 		}
+	}
 }
 
 #############################################################################
@@ -918,12 +918,12 @@ insideFunction!=2 {
 }
 
 function endOfInheritance() {
-		isInherited=0;
-		if (lastLine!="") print appShift lastLine;
-		print appShift "{";
-		AddShift();
-		lastLine="";
-		return 0;
+	isInherited=0;
+	if (lastLine!="") print appShift lastLine;
+	print appShift "{";
+	AddShift();
+	lastLine="";
+	return 0;
 }
 
 # handle inheritance
