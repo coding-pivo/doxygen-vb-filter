@@ -968,6 +968,12 @@ END{
 	if (fileHeader!=2 && fileHeader!=0) {
 		print " */";
 	}
-	if (insideVB6Class==1) print ShiftRight "}";
+	if (insideVB6Class==1) {
+		if (leadingNamespace==2) {
+			print ShiftRight "}"
+		} else {
+			print "}"
+		}
+	}
 	if (leadingNamespace==2) print "}";
 }
