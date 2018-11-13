@@ -829,7 +829,7 @@ function findEndArgs(string) {
 		$0=$0 "("Params") ";
 		
 		for (i = 1; i <= lpostParams; i++) {
-			if (apostParams[i]!="") $0=$0 apostParams[i]" ";
+			if (apostParams[i]!="")	$0=$0 apostParams[i]" ";
 		}
 		
 		$0=rtrim($0)
@@ -1079,6 +1079,12 @@ END{
 	if (fileHeader!=2 && fileHeader!=0) {
 		print " */";
 	}
-	if (insideVB6Class==1) print ShiftRight "}";
+	if (insideVB6Class==1) {
+		if (leadingNamespace==2) {
+			print ShiftRight "}"
+		} else {
+			print "}"
+		}
+	}
 	if (leadingNamespace==2) print "}";
 }
