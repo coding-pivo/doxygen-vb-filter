@@ -1,0 +1,3 @@
+/** \file */
+namespace vb6 {
+}

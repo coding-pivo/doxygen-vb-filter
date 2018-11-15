@@ -1,0 +1,1 @@
+Attribute VB_Name = "VB6EmptyModule"
