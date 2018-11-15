@@ -75,7 +75,7 @@ BEGIN{
 	isInherited=0;
 	lastLine="";
 	appShift="";
-	
+	defaultFileHeaderWritten=0;
 }
 
 #############################################################################
@@ -165,6 +165,13 @@ fullLine==0{
 	}
 }
 
+#############################################################################
+# write default file header to ensure export of global statements
+#############################################################################
+defaultFileHeaderWritten==0 {
+	print "/** \\file */"
+	defaultFileHeaderWritten=1
+}
 
 #############################################################################
 # parse file header comment
