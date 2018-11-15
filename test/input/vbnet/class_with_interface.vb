@@ -2,9 +2,9 @@
 ' <remarks>detailed file description comes here<BR><BR>
 ' The original unfiltered source of this file : <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/DotNET/class_with_interface.vb">class_with_interface.vb</A></remarks>
 
-Imports System.IO
+Imports SysIO = System.IO
 Imports System.Threading
-Imports System.Runtime.Serialization
+Imports SysSerial = System.Runtime.Serialization
 
 ''' <summary>
 ''' simple enumeration
