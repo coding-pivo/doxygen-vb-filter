@@ -73,7 +73,7 @@ BEGIN{
 	insideNamespace=0;
 	insideComment=0;
 	insideImports=0;
-	instideVB6Property=0;
+	insideVB6Property=0;
 	isInherited=0;
 	lastLine="";
 	appShift="";
@@ -996,9 +996,9 @@ isInherited==1{
 	if ((match($0,"ReadOnly")) || (match($0,"Get"))) {
 		if (csharpStyledOutput==1)
 			sub("ReadOnly[[:blank:]]","");
-		if (instideVB6Property == 1)
+		if (insideVB6Property == 1)
 		{
-			instideVB6Property = 0;
+			insideVB6Property = 0;
 			$0=gensub("[[:blank:]]Get|[[:blank:]]Set|[[:blank:]]Let","","g");
 			print appShift $0 "\n" appShift "{ get; set; }";
 		}
@@ -1009,14 +1009,14 @@ isInherited==1{
 		}
 	} else {
 		if ((match($0, "Let") || match($0, "Set"))) {
-			instideVB6Property = 1;
+			insideVB6Property = 1;
 			next;
 		}
 			$0=gensub(" Get| Set| Let","","g");
 		print appShift $0 "\n" appShift "{ get; set; }";
 		next;
 	}
-	instideVB6Property = 0;
+	insideVB6Property = 0;
 	next;
 }
 
