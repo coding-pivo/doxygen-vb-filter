@@ -3,9 +3,9 @@
  *  <summary>example file demonstrating Windows API Declares</summary>
  *  <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/DotNET/declares.vb">declares.vb</A></remarks>
  */
-using System.IO;
+using SysIO = System.IO;
 using System.Threading;
-using System.Runtime.Serialization;
+using SysSerial = System.Runtime.Serialization;
 namespace vbnet {
 	/**
 	 *  <summary>
