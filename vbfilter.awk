@@ -97,6 +97,14 @@ UnixLineBreaks==1{
 }
 
 #############################################################################
+# write default file header to ensure export of global statements
+#############################################################################
+defaultFileHeaderWritten==0 {
+	print "/** \\file */"
+	defaultFileHeaderWritten=1
+}
+
+#############################################################################
 # merge multiline statements into one line
 #############################################################################
 fullLine==0{
@@ -163,14 +171,6 @@ fullLine==0{
 	} else {
 		insideVB6Header=2
 	}
-}
-
-#############################################################################
-# write default file header to ensure export of global statements
-#############################################################################
-defaultFileHeaderWritten==0 {
-	print "/** \\file */"
-	defaultFileHeaderWritten=1
 }
 
 #############################################################################
