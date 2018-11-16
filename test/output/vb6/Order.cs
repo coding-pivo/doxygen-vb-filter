@@ -1,8 +1,4 @@
-/**
- * @file 
-
- * \brief Single VB6 class module, defining Order
- */
+/** \file */
 namespace vb6 {
 	class Order
 	{

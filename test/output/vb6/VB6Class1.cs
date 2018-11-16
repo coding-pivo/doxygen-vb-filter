@@ -1,17 +1,14 @@
-/**
- * @file VB6Class1.cls
- * \brief Single VB6 class module, defining VB6Class1
- */
+/** \file */
 namespace vb6 {
-	 /**
-	 *  <summary>
-	 *  VB6 class example
-	 *  </summary>
-	 *  \file VB6Class1.cls
-	 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class1.cls">VB6Class1.cls</A>
-	 */
 	class VB6Class1
 	{
+		/**
+		 *  <summary>
+		 *  VB6 class example
+		 *  </summary>
+		 *  \file VB6Class1.cls
+		 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class1.cls">VB6Class1.cls</A>
+		 */
 		private enum SampleEnum
 		{
 			[_First] = 1,

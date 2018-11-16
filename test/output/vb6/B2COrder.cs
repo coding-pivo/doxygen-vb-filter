@@ -1,8 +1,4 @@
-/**
- * @file 
-
- * \brief Single VB6 class module, defining B2COrder
- */
+/** \file */
 namespace vb6 {
 	class B2COrder
 	: Order

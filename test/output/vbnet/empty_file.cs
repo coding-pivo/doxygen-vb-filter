@@ -1,5 +1,3 @@
-/**
- * @file empty_file.vb
- */
+/** \file */
 namespace vbnet {
 }

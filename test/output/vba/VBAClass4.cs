@@ -1,17 +1,14 @@
-/**
- * @file VBAClass4.cls
- * \brief Single VB6 class module, defining VBAClass4
- */
+/** \file */
 namespace vba {
-	 /**
-	 *  <summary>
-	 *  VBA class example
-	 *  </summary>
-	 *  \file VBAClass4.cls
-	 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VBAClass4.cls">VBAClass4.cls</A>
-	 */
 	class VBAClass4
 	{
+		/**
+		 *  <summary>
+		 *  VBA class example
+		 *  </summary>
+		 *  \file VBAClass4.cls
+		 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VBAClass4.cls">VBAClass4.cls</A>
+		 */
 		private enum SampleEnum
 		{
 			[_First] = 0,
