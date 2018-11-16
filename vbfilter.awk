@@ -90,18 +90,21 @@ function ReduceShift() {
 }
 
 #############################################################################
+# doxygen requires a file tag to be able to document global functions,
+# variables, enums, typedefs and defines
+# this is a default tag to ensure proper documentation of global stuff event
+# there is no file header added by the user
+#############################################################################
+defaultFileHeaderPrinted==0 {
+	print "/** \\file */"
+	defaultFileHeaderPrinted=1
+}
+
+#############################################################################
 # apply dos2unix
 #############################################################################
 UnixLineBreaks==1{
 	sub(/\r$/,"")
-}
-
-#############################################################################
-# write default file header to ensure export of global statements
-#############################################################################
-defaultFileHeaderWritten==0 {
-	print "/** \\file */"
-	defaultFileHeaderWritten=1
 }
 
 #############################################################################
