@@ -1,17 +1,14 @@
-/**
- * @file VB6Class4.cls
- * \brief Single VB6 class module, defining VB6Class4
- */
+/** \file */
 namespace vb6 {
-	 /**
-	 *  <summary>
-	 *  VB6 class example
-	 *  </summary>
-	 *  \file VB6Class4.cls
-	 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class4.cls">VB6Class4.cls</A>
-	 */
 	class VB6Class4
 	{
+		/**
+		 *  <summary>
+		 *  VB6 class example
+		 *  </summary>
+		 *  \file VB6Class4.cls
+		 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class4.cls">VB6Class4.cls</A>
+		 */
 		/**
 		 *  External declaration for win32 function
 		 */

@@ -1,17 +1,14 @@
-/**
- * @file VBAClass1.cls
- * \brief Single VB6 class module, defining VBAClass1
- */
+/** \file */
 namespace vba {
-	 /**
-	 *  <summary>
-	 *  VBA class example
-	 *  </summary>
-	 *  \file VBAClass1.cls
-	 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/test/input/vba/VBAClass1.cls">VBAClass1.cls</A>
-	 */
 	class VBAClass1
 	{
+		/**
+		 *  <summary>
+		 *  VBA class example
+		 *  </summary>
+		 *  \file VBAClass1.cls
+		 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/test/input/vba/VBAClass1.cls">VBAClass1.cls</A>
+		 */
 		/**
 		 *  External declaration for win32 function
 		 */

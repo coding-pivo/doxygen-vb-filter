@@ -1,5 +1,3 @@
-/**
- * @file VB6EmptyModule.bas
- */
+/** \file */
 namespace vb6 {
 }

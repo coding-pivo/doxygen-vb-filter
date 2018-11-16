@@ -1,9 +1,9 @@
-/**
- * @file VBAModule.bas
- *  <summary>VBA Module Example</summary>
- *  <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VBAModule.bas">VBAModule.bas</A></remarks>
- */
+/** \file */
 namespace vba {
+	/**
+	 *  <summary>VBA Module Example</summary>
+	 *  <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VBAModule.bas">VBAModule.bas</A></remarks>
+	 */
 	/** \remark Is imported from external library: kernel32.dll */
 	public extern  long GetTickCount();
 	/** \remark Is imported from external library: kernel32 */
