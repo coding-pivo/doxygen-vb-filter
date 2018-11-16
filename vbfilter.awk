@@ -75,7 +75,7 @@ BEGIN{
 	isInherited=0;
 	lastLine="";
 	appShift="";
-	defaultFileHeaderWritten=0;
+	defaultFileHeaderPrinted=0;
 }
 
 #############################################################################
