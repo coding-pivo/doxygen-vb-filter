@@ -60,8 +60,6 @@ BEGIN{
 #############################################################################
 # helper variables, don't change
 #############################################################################
-	printedFilename=0;
-	fileHeader=0;
 	fullLine=1;
 	classNestCounter=0;
 	className[1]="";
@@ -70,12 +68,12 @@ BEGIN{
 	insideVB6Header=0;
 	insideNamespace=0;
 	insideComment=0;
-	insideImports=0;
 	instideVB6Property=0;
 	isInherited=0;
 	lastLine="";
 	appShift="";
 	defaultFileHeaderPrinted=0;
+	defaultClassPrinted=0;
 }
 
 #############################################################################
@@ -98,6 +96,20 @@ function ReduceShift() {
 defaultFileHeaderPrinted==0 {
 	print "/** \\file */"
 	defaultFileHeaderPrinted=1
+}
+
+#############################################################################
+# print leading namespace
+# namespace name is extracted from file path. the last directory name in
+# the path, usually the project folder, is used.
+#
+# can be disabled by leadingNamespace=0 in configuration section
+#############################################################################
+leadingNamespace==1 {
+	file=gensub(/\\/, "/", "G", FILENAME)
+	print "namespace "basename[split(file, basename , "/")-1]" {"
+	AddShift()
+	leadingNamespace=2
 }
 
 #############################################################################
@@ -177,65 +189,15 @@ fullLine==0{
 }
 
 #############################################################################
-# parse file header comment
+# print default class when processing VB6 classes
 #############################################################################
-
-/^[[:blank:]]*'/ && fileHeader!=2 {
-
-	# check if header already processed
-	if (fileHeader==0) {
-		fileHeader=1;
-		printedFilename=1
-		# print @file line at the beginning
-		file=gensub(/\\/, "/", "G", FILENAME)
-		print "/**\n * @file "basename[split(file, basename , "/")];
-		# if inside VB6 class module, then the file header describes the
-		# class itself and should be printed after 
-		if (insideVB6Class==1) {
-			print " * \\brief Single VB6 class module, defining " insideVB6ClassName;
-			print " */";
-			if (leadingNamespace==1) {	# leading namespace enabled?
-				# get project name from the file path
-				print "namespace "basename[split(file, basename , "/")-1]" {";
-				AddShift()
-			}
-			print appShift " /**";
-		}
+defaultClassPrinted==0 {
+	if (insideVB6Class==1) {
+		isInherited=1;
+		print appShift "class " insideVB6ClassName;
 	}
-	sub("^[ \t]*'+"," * ");		# replace leading "'"
-	print appShift $0;
-	next;
+	defaultClassPrinted=1
 }
-
-# if .*' didn't match but header was processed, then
-# the header ends here
-fileHeader!=2 {
-	if (fileHeader!=0) {
-		print appShift " */";
-	}
-	fileHeader=2;
-}
-
-#############################################################################
-# print simply @file, if no file header found
-#############################################################################
-printedFilename==0 {
-	printedFilename=1;
-	file=gensub(/\\/, "/", "G", FILENAME)
-		if (insideVB6Class!=1) {
-			print "/// @file \n";
-		} else {
-			print "/**\n * @file \n";
-			print " * \\brief Single VB6 class module, defining " insideVB6ClassName;
-			print " */";
-			if (leadingNamespace==1) {	# leading namespace enabled?
-				# get project name from the file path
-				print "namespace "basename[split(file, basename , "/")-1]" {";
-				AddShift()
-			}
-		}
-}
-
 
 #############################################################################
 # skip empty lines
@@ -251,40 +213,8 @@ printedFilename==0 {
 /.*Imports[[:blank:]]+/ {
 	sub("Imports","using");
 	print $0";";
-	insideImports=1;
 	next;
 }
-
-#############################################################################
-# print leading namespace after the using section (if present)
-# or after the file header.
-# namespace name is extracted from file path. the last directory name in
-# the path, usually the project folder, is used.
-#
-# can be disabled by leadingNamespace=0;
-#############################################################################
-(!/^Imports[[:blank:]]+/) && leadingNamespace<=1 && fileHeader==2{
-	if (leadingNamespace==1) {	# leading namespace enabled?
-		# if inside VB6 file, then namespace was already printed
-		if (insideVB6Class!=1) {
-			file=gensub(/\\/, "/", "G", FILENAME)
-			# get project name from the file path
-			print "namespace "gensub(/ /,"_","G",basename[split(file, basename , "/")-1])" {";
-			AddShift()
-		}
-		leadingNamespace=2;	# is checked by the END function to print corresponding "}"
-	} else {
-		# reduce leading shift
-		leadingNamespace=3;
-	}
-	insideImports=0;
-	if (insideVB6Class==1) {
-		isInherited=1;
-		print appShift "class " insideVB6ClassName;
-	}
-}
-
-
 
 #############################################################################
 # handle comments
@@ -951,10 +881,27 @@ isInherited==1{
 }
 
 END{
-	# close file header if file contains no code
-	if (fileHeader!=2 && fileHeader!=0) {
-		print " */";
+	# print default file header if not yet printed due to empty file
+	if (defaultFileHeaderPrinted==0)
+		print "/** \\file */";
+	# print leading namespace if not yet printed due to empty file
+	if (leadingNamespace==1) {
+		file=gensub(/\\/, "/", "G", FILENAME)
+		print "namespace "basename[split(file, basename , "/")-1]" {"
+		AddShift()
+		leadingNamespace=2
 	}
-	if (insideVB6Class==1) print ShiftRight "}";
+	# print class name if file is empty
+	if ((insideVB6Class==1) && (insideVB6Header==1))
+		print appShift "class " insideVB6ClassName "\n" appShift "{";
+	# print final closing bracket for VB6 classes
+	if (insideVB6Class==1) {
+		if (leadingNamespace==2) {
+			print ShiftRight "}"
+		} else {
+			print "}"
+		}
+	}
+	# print final closing bracket for namespace
 	if (leadingNamespace==2) print "}";
 }
