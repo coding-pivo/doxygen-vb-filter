@@ -968,12 +968,10 @@ END{
 	if (fileHeader!=2 && fileHeader!=0) {
 		print " */";
 	}
+	ReduceShift()
 	if (insideVB6Class==1) {
-		if (leadingNamespace==2) {
-			print ShiftRight "}"
-		} else {
-			print "}"
-		}
+		print appShift "}"
+		ReduceShift()
 	}
-	if (leadingNamespace==2) print "}";
+	if (leadingNamespace==2) print appShift "}";
 }
