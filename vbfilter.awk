@@ -1034,14 +1034,15 @@ END{
 	# print class name if file is empty
 	if ((insideVB6Class==1) && (insideVB6Header==1))
 		print appShift "class " insideVB6ClassName "\n" appShift "{";
-	# print final closing bracket for VB6 classes
+	else
+		ReduceShift();
+	# 
 	if (insideVB6Class==1) {
-		if (leadingNamespace==2) {
-			print ShiftRight "}"
-		} else {
-			print "}"
-		}
+		# print final closing bracket for VB6 classes
+		print appShift "}"
+		# 
+		ReduceShift()
 	}
 	# print final closing bracket for namespace
-	if (leadingNamespace==2) print "}";
+	if (leadingNamespace==2) print appShift "}";
 }
