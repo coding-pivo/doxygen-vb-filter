@@ -284,13 +284,10 @@ printedFilename==0 {
 		} else {
 			enumComment = appShift "/**";
 		}
-		
 	} else {
-	
 		# if inheritance is being processed, then add comment to lastLine
 		# instead of printing it and process the end of
 		# class/interface declaration
-		
 		if (isInherited==1) {
 			endOfInheritance();
 		}
