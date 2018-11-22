@@ -29,7 +29,7 @@
 #---------------------------------------------------------------------------- 
 
 
-BEGIN{
+BEGIN {
 #############################################################################
 # Configuration
 #############################################################################
@@ -808,27 +808,27 @@ function findEndArgs(string) {
 # Rewrite Subs handling events if csharpStyledOutput=1
 #############################################################################
 /.*[[:blank:]]Handles[[:blank:]]+/ && (csharpStyledOutput==1) {
-	name=gensub(/(.*)[[:blank:]]+Handles[[:blank:]]+(\w+)/,"\\2","g",$0);
-	print appShift "/// \\remark Handles the " name " event.";
-	$0=  gensub(/(.*)[[:blank:]]+Handles[[:blank:]]+(.*)/,"\\1","g",$0);
+	name=gensub(/(.*)[[:blank:]]+Handles[[:blank:]]+(\w+)/,"\\2","g",$0)
+	print appShift "/// \\remark Handles the " name " event."
+	$0=gensub(/(.*)[[:blank:]]+Handles[[:blank:]]+(.*)/,"\\1","g",$0)
 }
-		
+
 #############################################################################
 # namespaces
 #############################################################################
 /^Namespace[[:blank:]]+/ || /[[:blank:]]+Namespace[[:blank:]]+/ {
-	sub("Namespace","namespace");
-	insideNamespace=1;
-	print appShift $0" {";
-	AddShift();
-	next;
+	sub("Namespace","namespace")
+	insideNamespace=1
+	print appShift $0 " {"
+	AddShift()
+	next
 }
 
 /^.*End[[:blank:]]+Namespace/ && insideNamespace==1 {
-	ReduceShift();
-	print appShift "}";
-	insideNamespace=0;
-	next;
+	ReduceShift()
+	print appShift "}"
+	insideNamespace=0
+	next
 }
 
 #############################################################################
@@ -920,52 +920,48 @@ isInherited==1{
 #############################################################################
 (/^Property[[:blank:]]+/ ||
 /.*[[:blank:]]+Property[[:blank:]]+/) && insideFunction!=2 {
-	sub("[(][)]","");
+	sub("[(][)]","")
 
-	if (csharpStyledOutput==1)
-	{
+	if (csharpStyledOutput==1) {
 		# remove Property keyword
 		gsub("^Property[[:blank:]]","")	
 		gsub("[[:blank:]]Property[[:blank:]]"," ")
 	}
 	
 	if (match($0,"[(].+[)]")) {
-		$0=gensub("[(]","[","g");
-		$0=gensub("[)]","]","g");
+		$0=gensub("[(]","[","g")
+		$0=gensub("[)]","]","g")
 	} else {
-		$0=gensub("[(][)]","","g");
+		$0=gensub("[(][)]","","g")
 	}
 	
 	# add c# styled get/set methods
 	if ((match($0,"ReadOnly")) || (match($0,"Get"))) {
 		if (csharpStyledOutput==1)
 			sub("ReadOnly[[:blank:]]","");
-		if (insideVB6Property == 1)
-		{
-			insideVB6Property = 0;
-			$0=gensub("[[:blank:]]Get|[[:blank:]]Set|[[:blank:]]Let","","g");
-			print appShift $0 "\n" appShift "{ get; set; }";
-		}
-		else
-		{
-			$0=gensub(" Get| Set| Let","","g");
-			print appShift $0 "\n" appShift "{ get; }";
+		if (insideVB6Property == 1) {
+			insideVB6Property = 0
+			$0=gensub("[[:blank:]]Get|[[:blank:]]Set|[[:blank:]]Let","","g")
+			print appShift $0 "\n" appShift "{ get; set; }"
+		} else {
+			$0=gensub(" Get| Set| Let","","g")
+			print appShift $0 "\n" appShift "{ get; }"
 		}
 	} else {
 		if ((match($0, "Let") || match($0, "Set"))) {
-			insideVB6Property = 1;
-			next;
+			insideVB6Property = 1
+			next
 		}
-			$0=gensub(" Get| Set| Let","","g");
-		print appShift $0 "\n" appShift "{ get; set; }";
-		next;
+		$0=gensub(" Get| Set| Let","","g")
+		print appShift $0 "\n" appShift "{ get; set; }"
+		next
 	}
-	insideVB6Property = 0;
-	next;
+	insideVB6Property = 0
+	next
 }
 
 /.*Operator[[:blank:]]+/ {
-	$0=gensub("Operator[[:blank:]]+([^ ]+)[[:blank:]]+","\\1 operator ","g",$0);
+	$0=gensub("Operator[[:blank:]]+([^ ]+)[[:blank:]]+","\\1 operator ","g",$0)
 }
 
 #############################################################################
@@ -991,34 +987,33 @@ insideFunction!=2 {
 	# but do not match array brackets
 	#  "Integer[]" is not replaced
 	#  "[Stop]" is replaced by "Stop"	
-	$0=gensub("([^[])([\\]])","\\1","g"); 
-	$0=gensub("([[])([^\\]])","\\2","g"); 
+	$0=gensub("([^[])([\\]])","\\1","g")
+	$0=gensub("([[])([^\\]])","\\2","g")
 
-	if (csharpStyledOutput==1)
-	{
+	if (csharpStyledOutput==1) {
 		# subs are functions returning void
-		gsub("[[:blank:]]Sub[[:blank:]]+"," void ");
-		gsub("^Sub[[:blank:]]+","void ");
-		gsub("[[:blank:]]Event[[:blank:]]+"," event ");
-		gsub("^Event[[:blank:]]+","event ");
+		gsub("[[:blank:]]Sub[[:blank:]]+"," void ")
+		gsub("^Sub[[:blank:]]+","void ")
+		gsub("[[:blank:]]Event[[:blank:]]+"," event ")
+		gsub("^Event[[:blank:]]+","event ")
 	}
 	
 	# add semicolon before inline comment
-	if( $0 != "" ){	
-		commentPart=substr($0,index($0,"/"));
-		definitionPart=substr($0,0,index($0,"/")-1);
+	if( $0 != "" ) {	
+		commentPart=substr($0,index($0,"/"))
+		definitionPart=substr($0,0,index($0,"/")-1)
 		if ( definitionPart != "" && commentPart != "") {
 			$0 = appShift definitionPart"; "commentPart
 		} else {
-			$0 = appShift $0";";
+			$0 = appShift $0 ";"
 		}
 		# with Declares we can have a superfluous "Function" here.
-		sub("Function","");		
+		sub("Function","")
 		print $0
 	}
 }
 
-END{
+END {
 	# print default file header if not yet printed due to empty file
 	if (defaultFileHeaderPrinted==0)
 		print "/** \\file */";
