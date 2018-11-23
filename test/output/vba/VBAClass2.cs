@@ -14,4 +14,7 @@ namespace vba {
 		/** \remark Is imported from external library: oleaut32.dll */
 		private extern  long SafeArrayGetDim(ref Any[] pArray);
 	}
+	/**
+	 * \class VBAClass2
+	 */
 }

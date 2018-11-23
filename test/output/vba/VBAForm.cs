@@ -22,4 +22,7 @@ namespace vba {
 		 */
 		private void Text1_Change();
 	}
+	/**
+	 * \class VBAForm
+	 */
 }

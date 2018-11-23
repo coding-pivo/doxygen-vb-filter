@@ -13,4 +13,7 @@ namespace vb6 {
 		{ get; set; }
 		public  string Order_SaveOrder();
 	}
+	/**
+	 * \class B2BOrder
+	 */
 }

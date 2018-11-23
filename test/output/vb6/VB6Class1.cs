@@ -152,4 +152,7 @@ namespace vb6 {
 		 */
 		private void Class_Terminate();
 	}
+	/**
+	 * \class VB6Class1
+	 */
 }
