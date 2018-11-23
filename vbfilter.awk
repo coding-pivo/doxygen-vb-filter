@@ -76,6 +76,10 @@ BEGIN {
 	appShift="";
 	defaultFileHeaderPrinted=0;
 	defaultClassPrinted=0;
+	VB6ClassCommentLineCount=1;
+	VB6ClassComment[VB6ClassCommentLineCount++]="/**"
+	insideVB6ClassComment=0;
+	split("file_class_struct_enum_union_fn_var_def_namespace_package_interface", doxygen_structural_commands, "_")
 }
 
 #############################################################################
@@ -104,6 +108,14 @@ function ltrim(s) {
 
 function trim(s) {
 	return rtrim(ltrim(s));
+}
+
+#############################################################################
+# check if element is part of array
+#############################################################################
+function elementExists(element, array,   x, y) {
+	for (x in array) y[array[x]]
+	return element in y
 }
 
 #############################################################################
@@ -214,19 +226,73 @@ defaultClassPrinted==0 {
 	if (insideVB6Class==1) {
 		isInherited=1;
 		print appShift "class " insideVB6ClassName;
+		# for VB6 classes the class comment needs to be preprocessed as 
+		# it needs to be located outside the class definition for proper
+		# doxygen processing
+		VB6ClassComment[VB6ClassCommentLineCount++]=" * \\class " insideVB6ClassName
+		VB6ClassComment[VB6ClassCommentLineCount++]=" */"
 	}
 	defaultClassPrinted=1
 }
 
 #############################################################################
-# skip empty lines or finish comment when inside a comment block
+# skip empty lines or finish comments when inside a comment block
 #############################################################################
 /^$/ {
+	# finish normal comment block
 	if (insideComment==1) {
 		insideComment=0
 		print appShift " */"
 	}
-	next;
+	# finish VB6 class comment
+	if (insideVB6ClassComment==1) {
+		insideVB6ClassComment=0
+		VB6ClassComment[VB6ClassCommentLineCount++]=" */"
+	}
+	next
+}
+
+#############################################################################
+# finish class comment here when another structural tag is found
+#############################################################################
+/^[[:blank:]]*[''', '][[:blank:]]*[\\, @][a-zA-Z]+/ && insideVB6ClassComment==1 {
+	# get the tag name
+	tagname=substr($0, match($0, /[\\, @]/))
+	if (match(tagname, /[[:blank:]]+/)==0)
+		tagname=trim(substr(tagname, 2));
+	else
+		tagname=trim(substr(tagname, 2, RSTART-1));
+	# check if tag is a structural tag
+	if (elementExists(tagname, doxygen_structural_commands)) {
+		# finish class tag
+		insideVB6ClassComment=0
+		VB6ClassComment[VB6ClassCommentLineCount++]=" */"
+	}
+}
+
+#############################################################################
+# detect begin of VB6 class comment (\class, @class)
+#############################################################################
+/^[[:blank:]]*[''', '][[:blank:]]*[\\, @]class[[:blank:]]*/ &&
+insideVB6Class==1 {
+	if (insideVB6ClassComment==1) {
+		# finish class comment and start new one
+		VB6ClassComment[VB6ClassCommentLineCount++]=" */"
+	}
+	VB6ClassComment[VB6ClassCommentLineCount++]="/**"
+	VB6ClassComment[VB6ClassCommentLineCount++]=gensub("^[ \t]*[']+"," * ",1,$0)
+	insideVB6ClassComment=1
+	next
+}
+
+#############################################################################
+# handle class comments of VB6 classes as they need to be located outside
+# the class definition for proper doxygen output
+#############################################################################
+(insideVB6ClassComment==1) {
+	# process class comments
+	VB6ClassComment[VB6ClassCommentLineCount++]=gensub("^[ \t]*[']+"," * ",1,$0)
+	next
 }
 
 #############################################################################
@@ -1025,14 +1091,21 @@ END {
 		leadingNamespace=2
 	}
 	# print class name if file is empty
-	if ((insideVB6Class==1) && (insideVB6Header==1))
-		print appShift "class " insideVB6ClassName "\n" appShift "{";
-	else
-		ReduceShift();
+	if ((insideVB6Class==1) && (insideVB6Header==1)) {
+		print appShift "class " insideVB6ClassName "\n" appShift "{"
+		VB6ClassComment[VB6ClassCommentLineCount++]=" * \\class " insideVB6ClassName
+		VB6ClassComment[VB6ClassCommentLineCount++]=" */"
+	}
+	else {
+		ReduceShift()
+	}
 	# 
 	if (insideVB6Class==1) {
 		# print final closing bracket for VB6 classes
 		print appShift "}"
+		# print class comment
+		for (c = 1; c <= length(VB6ClassComment); c++)
+			print appShift VB6ClassComment[c];
 		# 
 		ReduceShift()
 	}
