@@ -10,4 +10,7 @@ namespace vb6 {
 		public string OrderDate
 		{ get; set; }
 	}
+	/**
+	 * \class Order
+	 */
 }

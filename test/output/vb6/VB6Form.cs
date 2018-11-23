@@ -22,4 +22,7 @@ namespace vb6 {
 		 */
 		private void Text1_Change();
 	}
+	/**
+	 * \class VB6Form
+	 */
 }

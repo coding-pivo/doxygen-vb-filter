@@ -23,4 +23,7 @@ namespace vba {
 			[_Last] = 2
 		}
 	}
+	/**
+	 * \class VBAClass3
+	 */
 }

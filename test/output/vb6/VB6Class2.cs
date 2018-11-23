@@ -23,4 +23,7 @@ namespace vb6 {
 			[_Last] = 3
 		}
 	}
+	/**
+	 * \class VB6Class2
+	 */
 }

@@ -47,4 +47,7 @@ namespace vb6 {
 		private void UserControl_ReadProperties(PropertyBag PropBag);
 		private void UserControl_WriteProperties(PropertyBag PropBag);
 	}
+	/**
+	 * \class VB6Control
+	 */
 }

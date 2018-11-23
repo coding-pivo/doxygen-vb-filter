@@ -23,4 +23,7 @@ namespace vba {
 			double typeItem2; 
 		}
 	}
+	/**
+	 * \class VBAClass4
+	 */
 }
