@@ -284,6 +284,14 @@ insideVB6ClassComment==1 {
 }
 
 #############################################################################
+# finish class comment here when no comment is in this line
+#############################################################################
+(!(/^[[:blank:]]*'/)) && insideVB6ClassComment==1 {
+	insideVB6ClassComment=0
+	VB6ClassComment[VB6ClassCommentLineCount++]=" */"
+}
+
+#############################################################################
 # detect begin of VB6 class comment (\class, @class)
 #############################################################################
 /^[[:blank:]]*('|''')[[:blank:]]*[@\\]class[[:blank:]]*/ &&
