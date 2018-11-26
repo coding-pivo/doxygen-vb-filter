@@ -39,17 +39,18 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
+' \class VB6Form
 ' \brief VB6 Form Example
-' \file VB6Form.frm
-' \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Form.frm">VB6Form.frm</A>
+' @file VB6Form.frm
+' @remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Form.frm">VB6Form.frm</A>
 
-' \brief Button Click handler
+''' \brief Button Click handler
 Private Sub Command1_Click()
 
 End Sub
 
-' \brief Form OnLoad handler
-' \remarks Is called when the form is loading
+''' \brief Form OnLoad handler
+''' \remarks Is called when the form is loading
 Private Sub Form_Load()
 
 End Sub

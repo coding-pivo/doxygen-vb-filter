@@ -3,11 +3,6 @@ namespace vb6 {
 	class VB6Control
 	{
 		/**
-		 *  \brief Custom VB6 User Control
-		 *  \remarks this example contains auto generated code by Visual Studio 6.0
-		 *           and additional comments as example
-		 */
-		/**
 		 *  \file VB6Control.ctl
 		 *  \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Control.ctl">VB6Control.ctl</A>
 		 */
@@ -49,5 +44,11 @@ namespace vb6 {
 	}
 	/**
 	 * \class VB6Control
+	 */
+	/**
+	 * @class VB6Control
+	 *  @brief Custom VB6 User Control
+	 *  @remarks this example contains auto generated code by Visual Studio 6.0
+	 *           and additional comments as example
 	 */
 }

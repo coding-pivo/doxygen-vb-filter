@@ -3,9 +3,6 @@ namespace vb6 {
 	class VB6Class3
 	{
 		/**
-		 *  <summary>
-		 *  VB6 class example
-		 *  </summary>
 		 *  \file VB6Class3.cls
 		 *  \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class3.cls">VB6Class3.cls</A>
 		 */
@@ -16,5 +13,9 @@ namespace vb6 {
 	}
 	/**
 	 * \class VB6Class3
+	 */
+	/**
+	 *  @class VB6Class3
+	 *  @brief VB6 class example
 	 */
 }
