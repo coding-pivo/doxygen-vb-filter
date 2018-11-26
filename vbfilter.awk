@@ -269,7 +269,7 @@ defaultClassPrinted==0 {
 #############################################################################
 /^[[:blank:]]*[''', '][[:blank:]]*[\\, @][a-zA-Z]+/ && insideVB6ClassComment==1 {
 	# get the tag name
-	tagname=substr($0, match($0, /[\\, @]/))
+	tagname=trim(substr($0, match($0, /[\\, @]/)))
 	if (match(tagname, /[[:blank:]]+/)==0)
 		tagname=trim(substr(tagname, 2));
 	else
