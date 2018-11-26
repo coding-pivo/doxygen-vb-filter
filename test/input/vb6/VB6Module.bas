@@ -1,6 +1,7 @@
 Attribute VB_Name = "VB6Module"
-' <summary>VB6 Module Example</summary>
-' <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Module.bas">VB6Module.bas</A></remarks>
+'\file
+'\brief VB6 Module Example
+'\remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Module.bas">VB6Module.bas</A>
 
 Public Declare Function GetTickCount Lib "kernel32.dll" () As Long
 

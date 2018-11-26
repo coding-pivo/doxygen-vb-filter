@@ -11,12 +11,10 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
-    ''' <summary>
-    ''' VB6 class example
-    ''' </summary>
+    ''' @class VB6Class3
+    ''' @brief VB6 class example
     ''' \file VB6Class3.cls
     ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class3.cls">VB6Class3.cls</A>
-    
     Private Declare Function GetPrivateProfileStringA Lib "kernel32" ( _ 
         ByVal strSection As String, _
         ByVal strKey As String, _

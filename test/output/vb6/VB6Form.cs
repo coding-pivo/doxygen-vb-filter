@@ -3,9 +3,8 @@ namespace vb6 {
 	class VB6Form
 	{
 		/**
-		 *  \brief VB6 Form Example
-		 *  \file VB6Form.frm
-		 *  \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Form.frm">VB6Form.frm</A>
+		 *  @file VB6Form.frm
+		 *  @remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Form.frm">VB6Form.frm</A>
 		 */
 		/**
 		 *  \brief Button Click handler
@@ -24,5 +23,9 @@ namespace vb6 {
 	}
 	/**
 	 * \class VB6Form
+	 */
+	/**
+	 *  \class VB6Form
+	 *  \brief VB6 Form Example
 	 */
 }

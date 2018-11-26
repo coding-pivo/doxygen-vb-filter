@@ -11,9 +11,10 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
-    ''' <summary>
-    ''' VB6 class example
-    ''' </summary>
+    ''' \class VB6Class1
+    ''' \brief VB6 class example
+    ''' \details
+    '''     Detailed description of VB6 class example
     ''' \file VB6Class1.cls
     ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class1.cls">VB6Class1.cls</A>
     

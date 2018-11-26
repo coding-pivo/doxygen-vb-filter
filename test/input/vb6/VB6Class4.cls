@@ -11,11 +11,11 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
-    ''' <summary>
-    ''' VB6 class example
-    ''' </summary>
-    ''' \file VB6Class4.cls
-    ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class4.cls">VB6Class4.cls</A>
+    ''' \class VB6Class4
+    ''' \brief VB6 class example
+    
+    ''' @file VB6Class4.cls
+    ''' @remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VB6Class4.cls">VB6Class4.cls</A>
     
     ''' External declaration for win32 function
     Private Declare Function GetPrivateProfileStringA Lib "kernel32" ( _	
