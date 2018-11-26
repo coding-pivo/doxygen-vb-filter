@@ -267,7 +267,8 @@ defaultClassPrinted==0 {
 #############################################################################
 # finish class comment here when another structural tag is found
 #############################################################################
-/^[[:blank:]]*[''', '][[:blank:]]*[\\, @][a-zA-Z]+/ && insideVB6ClassComment==1 {
+/^[[:blank:]]*('|''')[[:blank:]]*[@\\][a-zA-Z]+/ &&
+insideVB6ClassComment==1 {
 	# get the tag name
 	tagname=trim(substr($0, match($0, /[\\, @]/)))
 	if (match(tagname, /[[:blank:]]+/)==0)
@@ -285,7 +286,7 @@ defaultClassPrinted==0 {
 #############################################################################
 # detect begin of VB6 class comment (\class, @class)
 #############################################################################
-/^[[:blank:]]*[''', '][[:blank:]]*[\\, @]class[[:blank:]]*/ &&
+/^[[:blank:]]*('|''')[[:blank:]]*[@\\]class[[:blank:]]*/ &&
 insideVB6Class==1 {
 	if (insideVB6ClassComment==1) {
 		# finish class comment and start new one
