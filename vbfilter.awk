@@ -287,7 +287,7 @@ printedFilename==0 {
 #############################################################################
 
 ## beginning of comment
-(/^[[:blank:]]*'''[[:blank:]]*/ || /^[[:blank:]]*'[[:blank:]]*[\\<][^ ].+/) && insideComment!=1 {
+(/^[[:blank:]]*'''[[:blank:]]*/ || /^[[:blank:]]*'[[:blank:]]*[\\<@][^ ].+/) && insideComment!=1 {
 	if (insideEnum==1){	
 		# if enum is being processed, add comment to enumComment
 		# instead of printing it
