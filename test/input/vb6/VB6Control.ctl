@@ -21,8 +21,8 @@ Attribute VB_Exposed = False
 ' \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Control.ctl">VB6Control.ctl</A>
 
 
-Const m_def_BackColor = 0   ' some constant
-Const m_def_ForeColor = 0   ' an other example inline comment
+Const m_def_BackColor = 0   '''< some constant
+Const m_def_ForeColor = 0   '''< an other example inline comment
 Const m_def_Enabled = 0
 Const m_def_BackStyle = 0
 Const m_def_BorderStyle = 0

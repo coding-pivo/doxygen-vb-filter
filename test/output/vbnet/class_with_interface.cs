@@ -16,15 +16,15 @@ namespace vbnet {
 	 */
 	public enum SampleEnum
 	{
-		Value1, /**< \brief  first value */
+		Value1, /**< \brief first value */
 		/**
 		 *  <summary>
 		 *  second value
 		 *  </summary>
 		 */
 		Value2,
-		Value3 = 1234, /**< \brief  third assigned value */
-		Value4 /**< \brief  fourth value */
+		Value3 = 1234, /**< \brief third assigned value */
+		Value4 /**< \brief fourth value */
 	}
 	/**
 	 *  <summary>
