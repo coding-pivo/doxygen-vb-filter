@@ -345,8 +345,9 @@ printedFilename==0 {
 /^'+/ && insideComment!=1 {
 	next;
 }
-/.+'+/ && insideComment!=1 {
-	sub("[[:blank:]]*'"," /**< \\brief ");
+
+/.+'''</ && insideComment!=1 {
+	sub("[[:blank:]]*'''<[[:blank:]]*"," /**< \\brief ");
 	$0 = $0" */"
 }
 
