@@ -42,12 +42,12 @@ Attribute VB_Exposed = False
         typeItem2 As Long
     End Type
     
-    Private someIntegerPublic As Integer  ' simple private integer value
-    Public someStringPrivate As String    ' simple public string value
-    Private someObjectProtected As Object ' some private object
-    Private someDoubleFriend As Double    ' some private double value
-    Public someSingleShared As Single     ' some public single value
-    Public someBooleanImports As Boolean  ' some public boolean value
+    Private someIntegerPublic As Integer  '''< simple private integer value
+    Public someStringPrivate As String    '''< simple public string value
+    Private someObjectProtected As Object '''< some private object
+    Private someDoubleFriend As Double    '''< some private double value
+    Public someSingleShared As Single     '''< some public single value
+    Public someBooleanImports As Boolean  '''< some public boolean value
     
     ''' <summary>
     ''' simple property

@@ -77,7 +77,7 @@ namespace vb6 {
 		 *  simple integer value
 		 */
 		int someInteger; 
-		string someString; /**< \brief  simple string value */
+		string someString; /**< \brief simple string value */
 		long someLong; 
 		/**
 		 *  simple single value

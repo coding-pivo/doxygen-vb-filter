@@ -20,8 +20,8 @@ Public Enum SampleEnum1
     [_First] = 1
     ''' First enum item
     First_Item = 1
-    Second_Item = 2 'Second enum item
-    Third_Item = 3 'Third enum item
+    Second_Item = 2 '''< Second enum item
+    Third_Item = 3 '''< Third enum item
     [_Last] = 3
 End Enum
 
@@ -30,7 +30,7 @@ End Enum
 ' </summary>
 Private Enum SampleEnum2
     [_First] = 1
-    First_Item = 1 'First enum item
+    First_Item = 1 '''< First enum item
     ''' Second emum item
     Second_Item = 2
     Third_Item = 3
@@ -45,7 +45,7 @@ End Enum
 Public Type SampleVBAType
     ''' simple integer value
     someInteger As Integer
-    someString As String ' simple string value
+    someString As String '''< simple string value
     someLong As Long
     ''' simple single value
     someSingle As Single
@@ -61,7 +61,7 @@ Public Function SampleModuleFunction(ByVal pFirst As Double) As Double
     SampleFunction = pFirst
 End Function
 
-Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long 'Sample function comment
+Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long '''< Sample function comment
     SampleFunction2 = pFirst
 End Function
 
@@ -73,5 +73,5 @@ Sub SampleModuleMethod()
 
 End Sub
 
-Sub SampleModuleMethod2() 'Sample sub comment
+Sub SampleModuleMethod2() '''< Sample sub comment
 End Sub
