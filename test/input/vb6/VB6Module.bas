@@ -1,7 +1,7 @@
 Attribute VB_Name = "VB6Module"
-'\file
-'\brief VB6 Module Example
-'\remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Module.bas">VB6Module.bas</A>
+'''\file
+'''\brief VB6 Module Example
+'''\remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Module.bas">VB6Module.bas</A>
 
 Public Declare Function GetTickCount Lib "kernel32.dll" () As Long
 
@@ -14,9 +14,9 @@ Public Declare Function WritePrivateProfileStringA Lib "kernel32" ( _
 ''' Global variable example
 Public gl_test As Double
 
-' <summary>
-' simple VB6 Public Enum
-' </summary>
+''' <summary>
+''' simple VB6 Public Enum
+''' </summary>
 Public Enum SampleEnum1
     [_First] = 1
     ''' First enum item
@@ -26,9 +26,9 @@ Public Enum SampleEnum1
     [_Last] = 3
 End Enum
 
-' <summary>
-' simple VB6 Private Enum
-' </summary>
+''' <summary>
+''' simple VB6 Private Enum
+''' </summary>
 Private Enum SampleEnum2
     [_First] = 1
     First_Item = 1 '''< First enum item
@@ -40,9 +40,9 @@ Private Enum SampleEnum2
     [_Last] = 4
 End Enum
 
-' <summary>
-' simple VB6 Structure
-' </summary>
+''' <summary>
+''' simple VB6 Structure
+''' </summary>
 Public Structure SampleVB6Structure
     ''' simple private integer value
     Private someInteger As Integer
@@ -51,9 +51,9 @@ Public Structure SampleVB6Structure
     Public someLong As Long
 End Structure
 
-' <summary>
-' simple VBA/VB6 Type
-' </summary>
+''' <summary>
+''' simple VBA/VB6 Type
+''' </summary>
 Public Type SampleVBAType
     ''' simple integer value
     someInteger As Integer
@@ -63,13 +63,13 @@ Public Type SampleVBAType
     someSingle As Single
 End Type
 
-' <summary>
-' function with parameter
-' </summary>
+''' <summary>
+''' function with parameter
+''' </summary>
 
-' <param name="pFirst">simple parameter</param>
-' <returns>some double value</returns>
-' <remarks>Test remark</remarks>
+''' <param name="pFirst">simple parameter</param>
+''' <returns>some double value</returns>
+''' <remarks>Test remark</remarks>
 Public Function SampleModuleFunction(ByVal pFirst As Double) As Double
     SampleFunction = pFirst
 End Function
@@ -78,10 +78,10 @@ Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long '''< Sample 
     SampleFunction2 = pFirst
 End Function
 
-' <summary>
-' simple method
-' </summary>
-' <remarks>Test remark</remarks>
+''' <summary>
+''' simple method
+''' </summary>
+''' <remarks>Test remark</remarks>
 Sub SampleModuleMethod()
 
 End Sub

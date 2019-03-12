@@ -12,13 +12,13 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
-'@class VB6Control
-' @brief Custom VB6 User Control
-' @remarks this example contains auto generated code by Visual Studio 6.0
-'          and additional comments as example
+'''@class VB6Control
+''' @brief Custom VB6 User Control
+''' @remarks this example contains auto generated code by Visual Studio 6.0
+'''          and additional comments as example
 
-' \file VB6Control.ctl
-' \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Control.ctl">VB6Control.ctl</A>
+''' \file VB6Control.ctl
+''' \remarks The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VB6Control.ctl">VB6Control.ctl</A>
 
 
 Const m_def_BackColor = 0   '''< some constant
@@ -164,4 +164,3 @@ Private Sub UserControl_WriteProperties(PropBag As PropertyBag)
     Call PropBag.WriteProperty("BackStyle", m_BackStyle, m_def_BackStyle)
     Call PropBag.WriteProperty("BorderStyle", m_BorderStyle, m_def_BorderStyle)
 End Sub
-

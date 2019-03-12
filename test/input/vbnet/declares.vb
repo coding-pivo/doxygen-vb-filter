@@ -1,5 +1,5 @@
-' <summary>example file demonstrating Windows API Declares</summary>
-' <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/DotNET/declares.vb">declares.vb</A></remarks>
+''' <summary>example file demonstrating Windows API Declares</summary>
+''' <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/DotNET/declares.vb">declares.vb</A></remarks>
 
 Imports SysIO = System.IO
 Imports System.Threading
