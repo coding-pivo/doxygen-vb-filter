@@ -1,6 +1,6 @@
 Attribute VB_Name = "VBAModule"
-' <summary>VBA Module Example</summary>
-' <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VBAModule.bas">VBAModule.bas</A></remarks>
+''' <summary>VBA Module Example</summary>
+''' <remarks>The original unfiltered source of this file: <A HREF="http://trac.sevo.org/projects/doxyvb/browser/trunk/samples/ClassicVB/VBAModule.bas">VBAModule.bas</A></remarks>
 
 Public Declare Function GetTickCount Lib "kernel32.dll" () As Long
 
@@ -13,9 +13,9 @@ Public Declare Function WritePrivateProfileStringA Lib "kernel32" ( _
 ''' Global variable example
 Public gl_test As Double
 
-' <summary>
-' simple VBA Public Enum
-' </summary>
+''' <summary>
+''' simple VBA Public Enum
+''' </summary>
 Public Enum SampleEnum1
     [_First] = 1
     ''' First enum item
@@ -25,9 +25,9 @@ Public Enum SampleEnum1
     [_Last] = 3
 End Enum
 
-' <summary>
-' simple VBA Private Enum
-' </summary>
+''' <summary>
+''' simple VBA Private Enum
+''' </summary>
 Private Enum SampleEnum2
     [_First] = 1
     First_Item = 1 '''< First enum item
@@ -39,9 +39,9 @@ Private Enum SampleEnum2
     [_Last] = 4
 End Enum
 
-' <summary>
-' simple VBA Type
-' </summary>
+''' <summary>
+''' simple VBA Type
+''' </summary>
 Public Type SampleVBAType
     ''' simple integer value
     someInteger As Integer
@@ -51,12 +51,12 @@ Public Type SampleVBAType
     someSingle As Single
 End Type
 
-' <summary>
-' function with parameter
-' </summary>
-' <param name="pFirst">simple parameter</param>
-' <returns>some double value</returns>
-' <remarks>Test remark</remarks>
+''' <summary>
+''' function with parameter
+''' </summary>
+''' <param name="pFirst">simple parameter</param>
+''' <returns>some double value</returns>
+''' <remarks>Test remark</remarks>
 Public Function SampleModuleFunction(ByVal pFirst As Double) As Double
     SampleFunction = pFirst
 End Function
@@ -65,10 +65,10 @@ Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long '''< Sample 
     SampleFunction2 = pFirst
 End Function
 
-' <summary>
-' simple method
-' </summary>
-' <remarks>Test remark</remarks>
+''' <summary>
+''' simple method
+''' </summary>
+''' <remarks>Test remark</remarks>
 Sub SampleModuleMethod()
 
 End Sub
