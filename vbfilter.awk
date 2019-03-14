@@ -259,10 +259,11 @@ defaultClassPrinted==0 {
 insideVB6ClassComment==1 {
 	# get the tag name
 	tagname=trim(substr($0, match($0, /[\\, @]/)))
-	if (match(tagname, /[[:blank:]]+/)==0)
-		tagname=trim(substr(tagname, 2));
-	else
-		tagname=trim(substr(tagname, 2, RSTART-1));
+	if (match(tagname, /[[:blank:]]+/)==0) {
+		tagname=trim(substr(tagname, 2))
+	} else {
+		tagname=trim(substr(tagname, 2, RSTART-1))
+	}
 	# check if tag is a structural tag
 	if (elementExists(tagname, doxygen_structural_commands)) {
 		# finish class tag
@@ -485,7 +486,7 @@ insideFunction==2 {
 # Replace "Partial" by "partial" and swap order of "partial" and "public" or "private"
 /^.*Partial[[:blank:]]+/ {
 	sub("Partial","partial")
-	if($1 == "partial" && $2 ~ /public|private/) {
+	if ($1 == "partial" && $2 ~ /public|private/) {
 		$1 = $2
 		$2 = "partial"
 	}	
@@ -599,21 +600,26 @@ insideFunction==2 {
 }
 
 insideEnum==1 {
-	if ( lastEnumLine == "" ) {
-		lastEnumLine = $0;
-		if (enumComment!="") print enumComment;
-		enumComment="";
+	if (lastEnumLine == "") {
+		lastEnumLine = $0
+		if (enumComment!="") {
+			print enumComment
+		}
+		enumComment=""
 	} else {
-		commentPart=substr(lastEnumLine,match(lastEnumLine,"[/][*][*]<"));
-		definitionPart=substr(lastEnumLine,0,match(lastEnumLine,"[/][*][*]<")-2);
-		if (definitionPart=="") print appShift commentPart ",";
-		else {
+		commentPart=substr(lastEnumLine,match(lastEnumLine,"[/][*][*]<"))
+		definitionPart=substr(lastEnumLine,0,match(lastEnumLine,"[/][*][*]<")-2)
+		if (definitionPart=="") {
+			print appShift commentPart ","
+		} else {
 			print appShift definitionPart ", " commentPart
 		}
-		lastEnumLine = $0;
+		lastEnumLine = $0
 		# print leading comment of next element, if present
-		if (enumComment!="") print enumComment;
-		enumComment="";
+		if (enumComment!="") {
+			print enumComment
+		}
+		enumComment=""
 	}
 	next
 }
@@ -642,8 +648,9 @@ insideEnum==1 {
 		commentPart=""
 		definitionPart=lastTypeLine
 	}
-	if (definitionPart=="") print appShift commentPart ";";
-	else {
+	if (definitionPart=="") {
+		print appShift commentPart ";"
+	} else {
 		print appShift convertSimpleType(definitionPart) "; " commentPart
 	}
 	ReduceShift()
@@ -655,26 +662,31 @@ insideEnum==1 {
 }
 
 insideType==1 {
-	if ( lastTypeLine == "" ) {
-		lastTypeLine = $0;
-		if (typeComment!="") print typeComment;
-		typeComment="";
+	if (lastTypeLine == "") {
+		lastTypeLine = $0
+		if (typeComment!="") {
+			print typeComment
+		}
+		typeComment=""
 	} else {
 		if (match(lastTypeLine,"[/][*][*]<") != 0) {
-			commentPart=substr(lastTypeLine,match(lastTypeLine,"[/][*][*]<"));
-			definitionPart=substr(lastTypeLine,0,match(lastTypeLine,"[/][*][*]<")-2);
+			commentPart=substr(lastTypeLine,match(lastTypeLine,"[/][*][*]<"))
+			definitionPart=substr(lastTypeLine,0,match(lastTypeLine,"[/][*][*]<")-2)
 		} else {
-			commentPart="";
-			definitionPart=lastTypeLine;
+			commentPart=""
+			definitionPart=lastTypeLine
 		}
-		if (definitionPart=="") print appShift commentPart ";";
-		else {
+		if (definitionPart=="") {
+			print appShift commentPart ";"
+		} else {
 			print appShift convertSimpleType(definitionPart) "; " commentPart
 		}
-		lastTypeLine = $0;
+		lastTypeLine = $0
 		# print leading comment of next element, if present
-		if (typeComment!="") print typeComment;
-		typeComment="";
+		if (typeComment!="") {
+			print typeComment
+		}
+		typeComment=""
 	}
 	next
 }
@@ -684,14 +696,17 @@ insideType==1 {
 #############################################################################
 
 /.*Declare[[:blank:]]+/ && insideFunction!=2 {
-	libName=gensub(".+Lib[[:blank:]]+\"([^ ]*)\"[[:blank:]].*","\\1","g");
-	if (match($0,"Alias")>0) aliasName=gensub(".+Alias[[:blank:]]+\"([^ ]*)\"[[:blank:]].*"," (Alias: \\1)","g");
-	if (isInherited==1){
-		endOfInheritance();
+	libName=gensub(".+Lib[[:blank:]]+\"([^ ]*)\"[[:blank:]].*","\\1","g")
+	if (match($0,"Alias")>0) {
+		aliasName=gensub(".+Alias[[:blank:]]+\"([^ ]*)\"[[:blank:]].*"," (Alias: \\1)","g")
 	}
-	print appShift "/** \\remark Is imported from external library: " libName aliasName " */";
-	if (csharpStyledOutput==1)
-		sub(/Declare[[:blank:]]+/,"extern ");
+	if (isInherited==1) {
+		endOfInheritance()
+	}
+	print appShift "/** \\remark Is imported from external library: " libName aliasName " */"
+	if (csharpStyledOutput==1) {
+		sub(/Declare[[:blank:]]+/,"extern ")
+	}
 	libName=""
 	aliasName=""
 }
@@ -745,9 +760,11 @@ function convertSimpleType(Param) {
 function rindex(string, find) {
 	ns=length(string)
 	nf=length(find)
-	for (r = ns + 1 - nf; r>=1; r--)
-		if (substr(string, r, nf) == find)
-			return r;
+	for (r = ns + 1 - nf; r>=1; r--) {
+		if (substr(string, r, nf) == find) {
+			return r
+		}
+	}
 	return 0
 }
 
@@ -771,9 +788,9 @@ function findEndArgs(string) {
 	gsub("ByVal","")
 	# keep ByRef to make pointers differ from others
 	# gsub("ByRef","")
-	if (csharpStyledOutput==1)
-		gsub("ByRef","ref");
-	
+	if (csharpStyledOutput==1) {
+		gsub("ByRef","ref")
+	}
 	# simple member definition without brackets
 	if (index($0,"(") == 0) {
 		$0=convertSimpleType($0)
@@ -794,7 +811,7 @@ function findEndArgs(string) {
 		# loop over params and convert them
 		if (lParams > 0) {
 			for (i = 1; i <= lParams; i++) {
-				if(match(aParams[i],/.+[(][)].*/)) {
+				if (match(aParams[i],/.+[(][)].*/)) {
 					lParam=split(aParams[i], aParam , " ")
 					for (j = 1; j <= lParam; j++) {
 						if (aParam[j] == "As") {
@@ -842,7 +859,9 @@ function findEndArgs(string) {
 		# put everything back together
 		$0=""
 		for (i = 1; i <= lpreParams; i++) {
-			if (apreParams[i]!="")	$0=$0 apreParams[i]" ";
+			if (apreParams[i]!="") {
+				$0=$0 apreParams[i]" "
+			}
 		}
 		
 		$0=rtrim($0)
@@ -850,7 +869,9 @@ function findEndArgs(string) {
 		$0=$0 "("Params") "
 		
 		for (i = 1; i <= lpostParams; i++) {
-			if (apostParams[i]!="")	$0=$0 apostParams[i]" ";
+			if (apostParams[i]!="") {
+				$0=$0 apostParams[i]" "
+			}
 		}
 		
 		$0=rtrim($0)
@@ -940,7 +961,9 @@ insideFunction!=2 {
 
 function endOfInheritance() {
 	isInherited=0
-	if (lastLine!="") print appShift lastLine;
+	if (lastLine!="") {
+		print appShift lastLine
+	}
 	print appShift "{"
 	AddShift()
 	lastLine=""
@@ -949,21 +972,17 @@ function endOfInheritance() {
 
 # handle inheritance
 isInherited==1{
-	if(($0 ~ /^[[:blank:]]*Inherits[[:blank:]]+/) || ($0 ~ /^[[:blank:]]*Implements[[:blank:]]+/)) {
-		if ( lastLine == "" )
-		{
+	if (($0 ~ /^[[:blank:]]*Inherits[[:blank:]]+/) || ($0 ~ /^[[:blank:]]*Implements[[:blank:]]+/)) {
+		if (lastLine == "") {
 			sub("Inherits",":")
 			sub("Implements",":")
 			lastLine=$0
-		}
-		else
-		{
+		} else {
 			sub(".*Inherits",",")
 			sub(".*Implements",",")
 			lastLine=lastLine $0
 		}
-	}
-	else {
+	} else {
 		endOfInheritance()
 	}
 }
@@ -1013,8 +1032,9 @@ isInherited==1{
 	
 	# add c# styled get/set methods
 	if ((match($0,"ReadOnly")) || (match($0,"Get"))) {
-		if (csharpStyledOutput==1)
-			sub("ReadOnly[[:blank:]]","");
+		if (csharpStyledOutput==1) {
+			sub("ReadOnly[[:blank:]]","")
+		}
 		if (insideVB6Property == 1) {
 			insideVB6Property = 0
 			$0=gensub("[[:blank:]]Get|[[:blank:]]Set|[[:blank:]]Let","","g")
@@ -1075,10 +1095,10 @@ insideFunction!=2 {
 	}
 	
 	# add semicolon before inline comment
-	if( $0 != "" ) {	
+	if ($0 != "") {	
 		commentPart=substr($0,index($0,"/"))
 		definitionPart=substr($0,0,index($0,"/")-1)
-		if ( definitionPart != "" && commentPart != "") {
+		if (definitionPart != "" && commentPart != "") {
 			$0 = appShift definitionPart"; "commentPart
 		} else {
 			$0 = appShift $0 ";"
@@ -1091,8 +1111,9 @@ insideFunction!=2 {
 
 END {
 	# print default file header if not yet printed due to empty file
-	if (defaultFileHeaderPrinted==0)
-		print "/** \\file */";
+	if (defaultFileHeaderPrinted==0) {
+		print "/** \\file */"
+	}
 	# print leading namespace if not yet printed due to empty file
 	if (leadingNamespace==1) {
 		file=gensub(/\\/, "/", "G", FILENAME)
@@ -1105,8 +1126,7 @@ END {
 		print appShift "class " insideVB6ClassName "\n" appShift "{"
 		VB6ClassComment[VB6ClassCommentLineCount++]=" * \\class " insideVB6ClassName
 		VB6ClassComment[VB6ClassCommentLineCount++]=" */"
-	}
-	else {
+	} else {
 		ReduceShift()
 	}
 	# 
@@ -1114,11 +1134,14 @@ END {
 		# print final closing bracket for VB6 classes
 		print appShift "}"
 		# print class comment
-		for (c = 1; c <= length(VB6ClassComment); c++)
-			print appShift VB6ClassComment[c];
+		for (c = 1; c <= length(VB6ClassComment); c++) {
+			print appShift VB6ClassComment[c]
+		}
 		# 
 		ReduceShift()
 	}
 	# print final closing bracket for namespace
-	if (leadingNamespace==2) print appShift "}";
+	if (leadingNamespace==2) {
+		print appShift "}"
+	}
 }
