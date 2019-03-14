@@ -353,7 +353,7 @@ insideVB6Class==1 {
 
 ## strip leading '''
 /^[[:blank:]]*'/ {
-	if(insideComment==1) {
+	if (insideComment==1) {
 		commentString=gensub("^[ \t]*[']+"," * ",1,$0)
 		# if enum is being processed, add comment to enumComment
 		# instead of printing it
@@ -942,7 +942,7 @@ insideFunction!=2 {
 	sub("Interface","interface")
 	sub("Class","class")
 	sub("Structure","struct")
-	if(isInherited==1) {
+	if (isInherited==1) {
 		endOfInheritance()
 	}
 	classNestCounter++
