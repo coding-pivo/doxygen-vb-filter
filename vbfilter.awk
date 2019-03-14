@@ -57,6 +57,11 @@ BEGIN {
 	# documentation.
 	csharpStyledOutput=1
 	
+	# This variable is intended to define the comment string
+	# that indicates a Doxygen comment
+	doxygen_comment_string = "'''"
+	#doxygen_comment_string = "''"
+	
 #############################################################################
 # helper variables, don't change
 #############################################################################
@@ -255,7 +260,7 @@ defaultClassPrinted==0 {
 #############################################################################
 # finish class comment here when another structural tag is found
 #############################################################################
-/^[[:blank:]]*('|''')[[:blank:]]*[@\\][a-zA-Z]+/ &&
+$0 ~ "^[[:blank:]]*('|" doxygen_comment_string ")[[:blank:]]*[@\\\\][a-zA-Z]+" &&
 insideVB6ClassComment==1 {
 	# get the tag name
 	tagname=trim(substr($0, match($0, /[\\, @]/)))
@@ -283,7 +288,7 @@ insideVB6ClassComment==1 {
 #############################################################################
 # detect begin of VB6 class comment (\class, @class)
 #############################################################################
-/^[[:blank:]]*('|''')[[:blank:]]*[@\\]class[[:blank:]]*/ &&
+$0 ~ "^[[:blank:]]*('|" doxygen_comment_string ")[[:blank:]]*[@\\\\]class[[:blank:]]*" &&
 insideVB6Class==1 {
 	if (insideVB6ClassComment==1) {
 		# finish class comment and start new one
@@ -322,7 +327,7 @@ insideVB6Class==1 {
 #############################################################################
 
 ## beginning of comment
-(/^[[:blank:]]*'''[[:blank:]]*/ || /^[[:blank:]]*'[[:blank:]]*[\\<@][^ ].+/) && insideComment!=1 {
+($0 ~ "^[[:blank:]]*" doxygen_comment_string "[[:blank:]]*" || /^[[:blank:]]*'[[:blank:]]*[\\<@][^ ].+/) && insideComment!=1 {
 	if (insideEnum==1) {	
 		# if enum is being processed, add comment to enumComment
 		# instead of printing it
@@ -351,7 +356,7 @@ insideVB6Class==1 {
 	insideComment=1
 }
 
-## strip leading '''
+## strip leading comment string defined in doxygen_comment_string
 /^[[:blank:]]*'/ {
 	if (insideComment==1) {
 		commentString=gensub("^[ \t]*[']+"," * ",1,$0)
@@ -394,8 +399,8 @@ insideVB6Class==1 {
 	next
 }
 
-/.+'''</ && insideComment!=1 {
-	sub("[[:blank:]]*'''<[[:blank:]]*"," /**< \\brief ")
+$0 ~ ".+" doxygen_comment_string "<" && insideComment!=1 {
+	sub("[[:blank:]]*" doxygen_comment_string "<[[:blank:]]*", " /**< \\brief ")
 	$0 = $0" */"
 }
 
