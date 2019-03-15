@@ -579,7 +579,7 @@ insideFunction==2 {
 /^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ && insideFunction!=2 {
 	sub("Enum", "enum")
 	# Enumerations shouldn't have type definition so remove it
-	sub("+*[[:blank:]]As.*", "")
+	sub("[[:blank:]]+As[[:blank:]]+.*", "")
 	if (isInherited==1) {
 		endOfInheritance()
 	}
