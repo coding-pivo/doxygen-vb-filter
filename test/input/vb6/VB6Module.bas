@@ -74,7 +74,9 @@ Public Function SampleModuleFunction(ByVal pFirst As Double) As Double
     SampleFunction = pFirst
 End Function
 
-Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long '''< Sample function comment
+Public Function SampleModuleFunction2( _
+    ByRef pFirst As Long) _
+        As Long '''< Sample function comment
     SampleFunction2 = pFirst
 End Function
 
