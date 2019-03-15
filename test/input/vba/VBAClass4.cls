@@ -20,12 +20,12 @@ Attribute VB_Exposed = False
     Private Enum SampleEnum
         [_First] = 0
         enumItem1 = 0
-        enumItem2 = 1
+        enumItem2 = 1 '''< Brief item2 description
         enumItem3 = 2
         [_Last] = 2
     End Enum
     
     Private Type SampleType1
-        typeItem1 As Long
+        typeItem1 As Long '''< Brief item1 description
         typeItem2 As Double
     End Type

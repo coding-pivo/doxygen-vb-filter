@@ -13,13 +13,13 @@ namespace vba {
 		{
 			[_First] = 0,
 			enumItem1 = 0,
-			enumItem2 = 1,
+			enumItem2 = 1, /**< \brief Brief item2 description */
 			enumItem3 = 2,
 			[_Last] = 2
 		}
 		private struct SampleType1
 		{
-			long typeItem1; 
+			long typeItem1; /**< \brief Brief item1 description */
 			double typeItem2; 
 		}
 	}
