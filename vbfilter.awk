@@ -582,12 +582,13 @@ insideFunction==2 {
 # enums
 #############################################################################
 /^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ && insideFunction!=2 {
-	sub("Enum","enum")
-	sub("+*[[:blank:]]As.*",""); # enums shouldn't have type definitions
+	sub("Enum", "enum")
+	# Enumerations shouldn't have type definition so remove it
+	sub("[[:blank:]]+As[[:blank:]]+.*", "")
 	if (isInherited==1) {
 		endOfInheritance()
 	}
-	print appShift $0"\n"appShift"{"
+	print appShift $0 "\n" appShift "{"
 	insideEnum=1
 	lastEnumLine=""
 	AddShift()
