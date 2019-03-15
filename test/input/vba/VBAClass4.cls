@@ -17,15 +17,17 @@ Attribute VB_Exposed = False
     ''' \file VBAClass4.cls
     ''' \remarks The original unfiltered source of this file: <A HREF="https://github.com/sevoku/doxygen-vb-filter/blob/master/samples/ClassicVB/VBAClass4.cls">VBAClass4.cls</A>
     
+    'Comment should be ignored
     Private Enum SampleEnum
         [_First] = 0
         enumItem1 = 0
         enumItem2 = 1 '''< Brief item2 description
-        enumItem3 = 2
+        enumItem3 = 2 'Comment should be ignored
         [_Last] = 2
     End Enum
     
+    '\brief Comment should be ignored
     Private Type SampleType1
         typeItem1 As Long '''< Brief item1 description
-        typeItem2 As Double
+        typeItem2 As Double 'Comment should be ignored
     End Type
