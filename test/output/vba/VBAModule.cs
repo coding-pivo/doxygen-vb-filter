@@ -77,11 +77,21 @@ namespace vba {
 	public  double SampleModuleFunction(double pFirst);
 	public  long SampleModuleFunction2(ref long pFirst) ; /**< \brief Sample function comment */
 	/**
+	 *  \cond DEVELOPMENT
 	 *  <summary>
 	 *  simple method
 	 *  </summary>
 	 *  <remarks>Test remark</remarks>
 	 */
 	void SampleModuleMethod();
+	/**
+	 *  \endcond
+	 */
+	/**
+	 *  \cond DEVELOPMENT
+	 */
 	void SampleModuleMethod2() ; /**< \brief Sample sub comment */
+	/**
+	 *  \endcond
+	 */
 }

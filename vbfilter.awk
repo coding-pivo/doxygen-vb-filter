@@ -1111,6 +1111,10 @@ insideFunction!=2 {
 }
 
 END {
+	# print final closing tag if still inside a comment
+	if (insideComment == 1) {
+		print appShift " */"
+	}
 	# print default file header if not yet printed due to empty file
 	if (defaultFileHeaderPrinted==0) {
 		print "/** \\file */"
