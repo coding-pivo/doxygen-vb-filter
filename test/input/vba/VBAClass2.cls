@@ -26,3 +26,6 @@ Attribute VB_Exposed = False
         ByVal strFileNameName As String) As Long
         
     Private Declare Function SafeArrayGetDim Lib "oleaut32.dll" (ByRef pArray() As Any) As Long
+    
+    ''' \brief External function declaration
+    Private Declare Function Dummy Lib "..\dll\Dummy.dll" Alias "Foo_Bar" (ByVal InValue As Double, ByVal c As Long, ByVal f As Long) As Double
