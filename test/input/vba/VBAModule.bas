@@ -65,6 +65,7 @@ Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long '''< Sample 
     SampleFunction2 = pFirst
 End Function
 
+''' \cond DEVELOPMENT
 ''' <summary>
 ''' simple method
 ''' </summary>
@@ -72,6 +73,9 @@ End Function
 Sub SampleModuleMethod()
 
 End Sub
+''' \endcond
 
+''' \cond DEVELOPMENT
 Sub SampleModuleMethod2() '''< Sample sub comment
 End Sub
+''' \endcond

@@ -703,6 +703,8 @@ insideType==1 {
 
 /.*Declare[[:blank:]]+/ && insideFunction!=2 {
 	libName=gensub(".+Lib[[:blank:]]+\"([^ ]*)\"[[:blank:]].*","\\1","g")
+	# exchange \ in path name with \\ to avoid doxygen warnings
+	gsub(/\\/, "\\\\", libName)
 	if (match($0,"Alias")>0) {
 		aliasName=gensub(".+Alias[[:blank:]]+\"([^ ]*)\"[[:blank:]].*"," (Alias: \\1)","g")
 	}
@@ -1116,6 +1118,10 @@ insideFunction!=2 {
 }
 
 END {
+	# print final closing tag if still inside a comment
+	if (insideComment == 1) {
+		print appShift " */"
+	}
 	# print default file header if not yet printed due to empty file
 	if (defaultFileHeaderPrinted==0) {
 		print "/** \\file */"

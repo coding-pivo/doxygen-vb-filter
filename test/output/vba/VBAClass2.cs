@@ -13,6 +13,11 @@ namespace vba {
 		private extern  long GetPrivateProfileStringA(string strSection, string strKey, string strDefault, string strReturnedString, long lngSize, string strFileNameName);
 		/** \remark Is imported from external library: oleaut32.dll */
 		private extern  long SafeArrayGetDim(ref Any[] pArray);
+		/**
+		 *  \brief External function declaration
+		 */
+		/** \remark Is imported from external library: ..\\dll\\Dummy.dll (Alias: Foo_Bar) */
+		private extern  double Dummy(double InValue, long c, long f);
 	}
 	/**
 	 * \class VBAClass2
