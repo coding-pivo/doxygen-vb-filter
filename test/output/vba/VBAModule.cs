@@ -69,7 +69,7 @@ namespace vba {
 		string PinName; /**< \brief Name of pin associated with this %HDDPS channel */
 		long chanNum; /**< \brief Channel number for these indexed settings */
 		chtype connectionType; /**< \brief Type of channel used for connection */
-		DpsVSource outputSource; /** \brief Type of output source being used for force (Primary, Alt, or Zero) */
+		DpsVSource outputSource; /**< \brief Type of output source being used for force (Primary, Alt, or Zero) */
 		Variant primaryForceVoltage; /**< \brief Voltage set for primary output source */
 		Variant altForceVoltage; /**< \brief Voltage set for alternate output source */
 		tlDpsCompliance complianceRange; /**< \brief DPS compliance range setting */
