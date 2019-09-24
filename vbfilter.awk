@@ -729,7 +729,7 @@ insideFunction==2 {
 #############################################################################
 # enums
 #############################################################################
-/^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/ && insideFunction!=2 {
+(/^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/) && insideFunction!=2 {
 	sub("Enum", "enum")
 	# Enumerations shouldn't have type definition so remove it
 	sub("[[:blank:]]+As[[:blank:]]+.*", "")
@@ -781,7 +781,7 @@ insideEnum==1 {
 #############################################################################
 # types
 #############################################################################
-/^Type[[:blank:]]+/ || /[[:blank:]]+Type[[:blank:]]+/ && insideFunction!=2 {
+(/^Type[[:blank:]]+/ || /[[:blank:]]+Type[[:blank:]]+/) && insideFunction!=2 {
 	sub("Type","struct")
 	sub("+*[[:blank:]]As.*",""); # types shouldn't have type definitions
 	if (isInherited==1) {
