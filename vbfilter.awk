@@ -1234,14 +1234,14 @@ isInherited==1{
 /.*const[[:blank:]]+/ ||
 /.*[[:blank:]]+const[[:blank:]]+/) &&
 insideFunction!=2 {
-		
+	
 	# remove square brackets from reserved names
 	# but do not match array brackets
 	#  "Integer[]" is not replaced
 	#  "[Stop]" is replaced by "Stop"	
 	$0=gensub("([^[])([\\]])","\\1","g")
 	$0=gensub("([[])([^\\]])","\\2","g")
-
+	
 	if (csharpStyledOutput==1) {
 		# subs are functions returning void
 		gsub("[[:blank:]]Sub[[:blank:]]+"," void ")
