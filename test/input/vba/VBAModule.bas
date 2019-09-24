@@ -25,10 +25,7 @@ Public Enum SampleEnum1
     [_Last] = 3
 End Enum
 
-''' <summary>
-''' simple VBA Private Enum
-''' </summary>
-Private Enum SampleEnum2
+Private Enum SampleEnum2 '''< simple VBA Private Enum
     [_First] = 1
     First_Item = 1 '''< First enum item
     ''' Second emum item
