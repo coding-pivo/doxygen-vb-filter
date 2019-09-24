@@ -439,15 +439,23 @@ insideFunction==1 {
 	insideFunction=2
 }
 
+#############################################################################
+# Detect start of a Function/Sub
+#############################################################################
 (/^Function[[:blank:]]+/ || /[[:blank:]]+Function[[:blank:]]+/ ||
 /^Sub[[:blank:]]+/ || /[[:blank:]]+Sub[[:blank:]]+/) && insideFunction==0 &&
 (!(/^Declare[[:blank:]]+/ || /[[:blank:]]+Declare[[:blank:]]+/)) &&
 insideInterface==0 {
+# Avoid processing when Function/Sub is found only inside inline comment
 	insideFunction=1
 }
 
+#############################################################################
+# Detect end of a Function/Sub
+#############################################################################
 (/^[ \t]*End[[:blank:]]+Function/ || /^[ \t]*End[[:blank:]]+Sub/) &&
 insideFunction==2 {
+# Avoid processing when End is found only inside inline comment
 	insideFunction=0
 }
 
@@ -941,7 +949,6 @@ function findEndArgs(string) {
 #/.*Event[[:blank:]]+/ ||
 #/.*Operator[[:blank:]]+/) &&
 /.*As[[:blank:]]+/ {
-	# Avoid processing "As" key word inside inline comments
 	gsub("ByVal","")
 	# keep ByRef to make pointers differ from others
 	# gsub("ByRef","")
