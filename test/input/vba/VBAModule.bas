@@ -27,7 +27,7 @@ End Enum
 
 Private Enum SampleEnum2 '''< simple VBA Private Enum Const
     [_First] = 1
-    First_Item = 1 '''< First enum Double item
+    First_Item = 1 '''< First enum Double item Delegate
     ''' Second emum item
     Second_Item = 2
     Third_Item = 3
@@ -42,7 +42,7 @@ End Enum
 Public Type SampleVBAType
     ''' simple integer value
     someInteger As Integer
-    someString As String '''< simple String value Byte dummy Date
+    someString As String '''< simple String value Byte dummy Optional Date
     someLong As Long
     ''' simple single value
     someSingle As Single
@@ -58,7 +58,7 @@ Public Function SampleModuleFunction(ByVal pFirst As Double) As Double
     SampleFunction = pFirst
 End Function
 
-Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long '''< Sample function comment Char an Object
+Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long '''< Sample function comment Char an Object for AddressOf
     SampleFunction2 = pFirst
 End Function
 

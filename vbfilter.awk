@@ -533,7 +533,15 @@ insideFunction==2 {
 
 # Optional has to be removed for c# style
 /[[:blank:]]Optional[[:blank:]]/ && (csharpStyledOutput==1) {
-	gsub("Optional"," ")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub("Optional" ," ", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # String -> string
@@ -694,12 +702,28 @@ insideFunction==2 {
 
 # Delegate -> delegate
 /\<Delegate\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Delegate\>/,"delegate")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Delegate\>/, "delegate", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # AddressOf -> &
 /\<AddressOf\>/ && (csharpStyledOutput==1) {
-	gsub(/\<AddressOf\>/,"\\&")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<AddressOf\>/, "\\&", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 #############################################################################
