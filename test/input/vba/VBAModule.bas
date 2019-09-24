@@ -54,7 +54,7 @@ End Type
 ''' <param name="pFirst">simple parameter</param>
 ''' <returns>some double value</returns>
 ''' <remarks>Test remark</remarks>
-Public Function SampleModuleFunction(ByVal pFirst As Double) As Double
+Public Function SampleModuleFunction(ByVal pFirst As Double, Optional ByRef t As Variant, Optional ByVal s As String) As Double
     SampleFunction = pFirst
 End Function
 

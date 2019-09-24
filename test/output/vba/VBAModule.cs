@@ -69,7 +69,7 @@ namespace vba {
 	 *  <returns>some double value</returns>
 	 *  <remarks>Test remark</remarks>
 	 */
-	public  double SampleModuleFunction(double pFirst);
+	public  double SampleModuleFunction(double pFirst, ref Variant t, string s);
 	public  long SampleModuleFunction2(ref long pFirst) ; /**< \brief Sample Function comment Char an Object for AddressOf */
 	/**
 	 *  \cond DEVELOPMENT
