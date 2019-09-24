@@ -752,7 +752,9 @@ insideFunction==2 {
 (is_in_code("^Enum[[:blank:]]+", $0) || is_in_code("[[:blank:]]+Enum[[:blank:]]+", $0)) && insideFunction!=2 {
 	sub("Enum", "enum")
 	# Enumerations shouldn't have type definition so remove it
-	sub("[[:blank:]]+As[[:blank:]]+.*", "")
+	if (is_in_code("[[:blank:]]+As[[:blank:]]+.*", $0)) {
+		sub("[[:blank:]]+As[[:blank:]]+.*", "")
+	}
 	if (isInherited==1) {
 		endOfInheritance()
 	}
@@ -803,6 +805,10 @@ insideEnum==1 {
 #############################################################################
 (is_in_code("^Type[[:blank:]]+", $0) || is_in_code("[[:blank:]]+Type[[:blank:]]+", $0)) && insideFunction!=2 {
 	sub("Type","struct")
+	# Types shouldn't have type definition so remove it
+	if (is_in_code("[[:blank:]]+As[[:blank:]]+.*", $0)) {
+		sub("[[:blank:]]+As[[:blank:]]+.*", "")
+	}
 	sub("+*[[:blank:]]As.*",""); # types shouldn't have type definitions
 	if (isInherited==1) {
 		endOfInheritance()
