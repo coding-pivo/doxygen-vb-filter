@@ -24,14 +24,14 @@ namespace vba {
 		 *  First enum item
 		 */
 		First_Item = 1,
-		Second_Item = 2, /**< \brief Second enum item */
-		Third_Item = 3, /**< \brief Third enum item */
+		Second_Item = 2, /**< \brief Second Integer enum Short item Decimal */
+		Third_Item = 3, /**< \brief Third Single enum Long item */
 		[_Last] = 3
 	}
-	private enum SampleEnum2 /**< \brief simple VBA Private Enum String */
+	private enum SampleEnum2 /**< \brief simple VBA Private Enum Const */
 	{
 		[_First] = 1,
-		First_Item = 1, /**< \brief First enum item */
+		First_Item = 1, /**< \brief First enum Double item */
 		/**
 		 *  Second emum item
 		 */
@@ -54,7 +54,7 @@ namespace vba {
 		 *  simple integer value
 		 */
 		int someInteger; 
-		string someString; /**< \brief simple string value */
+		string someString; /**< \brief simple String value Byte dummy Date */
 		long someLong; 
 		/**
 		 *  simple single value
@@ -70,7 +70,7 @@ namespace vba {
 	 *  <remarks>Test remark</remarks>
 	 */
 	public  double SampleModuleFunction(double pFirst);
-	public  long SampleModuleFunction2(ref long pFirst) ; /**< \brief Sample function comment */
+	public  long SampleModuleFunction2(ref long pFirst) ; /**< \brief Sample function comment Char an Object */
 	/**
 	 *  \cond DEVELOPMENT
 	 *  <summary>
@@ -85,7 +85,7 @@ namespace vba {
 	/**
 	 *  \cond DEVELOPMENT
 	 */
-	void SampleModuleMethod2() ; /**< \brief Sample sub comment */
+	void SampleModuleMethod2() ; /**< \brief Sample sub comment Boolean */
 	/**
 	 *  \endcond
 	 */

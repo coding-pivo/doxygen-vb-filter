@@ -505,7 +505,15 @@ insideFunction==2 {
 
 # Const -> const
 /\<Const\>/ {
-	gsub(/\<Const\>/,"const")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Const\>/, "const", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # No WithEvents in C# - let's treat it like variables
@@ -543,57 +551,145 @@ insideFunction==2 {
 
 # Boolean -> bool
 /\<Boolean\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Boolean\>/,"bool")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Boolean\>/, "bool", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Char -> char
 /\<Char\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Char\>/,"char")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Char\>/, "char", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Byte -> byte
 /\<Byte\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Byte\>/,"byte")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Byte\>/, "byte", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Short -> short
 /\<Short\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Short\>/,"short")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Short\>/, "short", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Integer -> int
 /\<Integer\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Integer\>/,"int")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Integer\>/, "int", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Long -> long
 /\<Long\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Long\>/,"long")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Long\>/, "long", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Single -> float
 /\<Single\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Single\>/,"float")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Single\>/, "float", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Double -> double
 /\<Double\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Double\>/,"double")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Double\>/, "double", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Decimal -> decimal
 /\<Decimal\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Decimal\>/,"decimal")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Decimal\>/, "decimal", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Date -> DateTime
 /\<Date\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Date\>/,"DateTime")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Date\>/, "DateTime", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Object -> object
 /\<Object\>/ && (csharpStyledOutput==1) {
-	gsub(/\<Object\>/,"object")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<Object\>/, "object", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Delegate -> delegate
