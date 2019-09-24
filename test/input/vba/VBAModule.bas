@@ -25,7 +25,7 @@ Public Enum SampleEnum1
     [_Last] = 3
 End Enum
 
-Private Enum SampleEnum2 '''< simple VBA Private Enum Const
+Private Enum SampleEnum2 '''< simple VBA Private Enum As Const
     [_First] = 1
     First_Item = 1 '''< First enum Double item Delegate Event
     ''' Second emum item

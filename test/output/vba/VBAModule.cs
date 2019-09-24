@@ -28,7 +28,7 @@ namespace vba {
 		Third_Item = 3, /**< \brief Third Single enum Long item */
 		[_Last] = 3
 	}
-	private enum SampleEnum2 /**< \brief simple VBA Private Enum Const */
+	private enum SampleEnum2 /**< \brief simple VBA Private Enum As Const */
 	{
 		[_First] = 1,
 		First_Item = 1, /**< \brief First enum Double item Delegate Event */
