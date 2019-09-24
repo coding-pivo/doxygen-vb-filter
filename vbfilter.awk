@@ -941,6 +941,7 @@ function findEndArgs(string) {
 #/.*Event[[:blank:]]+/ ||
 #/.*Operator[[:blank:]]+/) &&
 /.*As[[:blank:]]+/ {
+	# Avoid processing "As" key word inside inline comments
 	gsub("ByVal","")
 	# keep ByRef to make pointers differ from others
 	# gsub("ByRef","")
