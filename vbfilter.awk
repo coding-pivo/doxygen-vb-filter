@@ -119,6 +119,17 @@ function elementExists(element, array,   x, y) {
 }
 
 #############################################################################
+# join all elements of an array into one string
+#############################################################################
+function join(array, len, sep,	result, i) {
+	result = array[1]
+	for (i = 2; i <= len; i++) {
+		result = result sep array[i]
+	}
+	return result
+}
+
+#############################################################################
 # doxygen requires a file tag to be able to document global functions,
 # variables, enums, typedefs and defines
 # this is a default tag to ensure proper documentation of global stuff event
@@ -517,58 +528,72 @@ insideFunction==2 {
 	gsub("Optional"," ")
 }
 
+# String -> string
 /\<String\>/ && (csharpStyledOutput==1) {
 	gsub(/\<String\>/,"string")
 }
 
+# Boolean -> bool
 /\<Boolean\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Boolean\>/,"bool")
 }
 
+# Char -> char
 /\<Char\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Char\>/,"char")
 }
 
+# Byte -> byte
 /\<Byte\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Byte\>/,"byte")
 }
 
+# Short -> short
 /\<Short\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Short\>/,"short")
 }
 
+# Integer -> int
 /\<Integer\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Integer\>/,"int")
 }
 
+# Long -> long
 /\<Long\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Long\>/,"long")
 }
 
+# Single -> float
 /\<Single\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Single\>/,"float")
 }
 
+# Double -> double
 /\<Double\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Double\>/,"double")
 }
 
+# Decimal -> decimal
 /\<Decimal\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Decimal\>/,"decimal")
 }
 
+# Date -> DateTime
 /\<Date\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Date\>/,"DateTime")
 }
 
+# Object -> object
 /\<Object\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Object\>/,"object")
 }
 
+# Delegate -> delegate
 /\<Delegate\>/ && (csharpStyledOutput==1) {
 	gsub(/\<Delegate\>/,"delegate")
 }
 
+# AddressOf -> &
 /\<AddressOf\>/ && (csharpStyledOutput==1) {
 	gsub(/\<AddressOf\>/,"\\&")
 }
