@@ -749,7 +749,7 @@ insideFunction==2 {
 #############################################################################
 # enums
 #############################################################################
-(/^Enum[[:blank:]]+/ || /[[:blank:]]+Enum[[:blank:]]+/) && insideFunction!=2 {
+(is_in_code("^Enum[[:blank:]]+", $0) || is_in_code("[[:blank:]]+Enum[[:blank:]]+", $0)) && insideFunction!=2 {
 	sub("Enum", "enum")
 	# Enumerations shouldn't have type definition so remove it
 	sub("[[:blank:]]+As[[:blank:]]+.*", "")
@@ -763,7 +763,7 @@ insideFunction==2 {
 	next
 }
 
-/^[ \t]*End[[:blank:]]+Enum/ && insideEnum==1 {
+is_in_code("^[ \t]*End[[:blank:]]+Enum", $0) && insideEnum==1 {
 	print appShift lastEnumLine
 	ReduceShift()
 	print appShift "}"
@@ -801,7 +801,7 @@ insideEnum==1 {
 #############################################################################
 # types
 #############################################################################
-(/^Type[[:blank:]]+/ || /[[:blank:]]+Type[[:blank:]]+/) && insideFunction!=2 {
+(is_in_code("^Type[[:blank:]]+", $0) || is_in_code("[[:blank:]]+Type[[:blank:]]+", $0)) && insideFunction!=2 {
 	sub("Type","struct")
 	sub("+*[[:blank:]]As.*",""); # types shouldn't have type definitions
 	if (isInherited==1) {
@@ -814,7 +814,7 @@ insideEnum==1 {
 	next
 }
 
-/^[ \t]*End[[:blank:]]+Type/ && insideType==1{
+is_in_code("^[ \t]*End[[:blank:]]+Type", $0) && insideType==1 {
 	if (match(lastTypeLine,"[/][*][*]<") != 0) {
 		commentPart=substr(lastTypeLine,match(lastTypeLine,"[/][*][*]<"))
 		definitionPart=substr(lastTypeLine,0,match(lastTypeLine,"[/][*][*]<")-2)
