@@ -960,7 +960,7 @@ function findEndArgs(string) {
 #/.*Property[[:blank:]]+/ ||
 #/.*Event[[:blank:]]+/ ||
 #/.*Operator[[:blank:]]+/) &&
-/.*As[[:blank:]]+/ {
+is_in_code(".*As[[:blank:]]+", $0) {
 	gsub("ByVal","")
 	# keep ByRef to make pointers differ from others
 	# gsub("ByRef","")
