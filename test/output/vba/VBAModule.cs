@@ -31,7 +31,7 @@ namespace vba {
 	private enum SampleEnum2 /**< \brief simple VBA Private Enum Const */
 	{
 		[_First] = 1,
-		First_Item = 1, /**< \brief First enum Double item Delegate */
+		First_Item = 1, /**< \brief First enum Double item Delegate Event */
 		/**
 		 *  Second emum item
 		 */
