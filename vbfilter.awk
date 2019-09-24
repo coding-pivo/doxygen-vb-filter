@@ -1235,20 +1235,28 @@ isInherited==1{
 /.*[[:blank:]]+const[[:blank:]]+/) &&
 insideFunction!=2 {
 	
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		if (csharpStyledOutput == 1) {
+			# subs are functions returning void
+			gsub("[[:blank:]]Sub[[:blank:]]+", " void ", line_segs[1])
+			gsub("^Sub[[:blank:]]+", "void ", line_segs[1])
+			gsub("[[:blank:]]Event[[:blank:]]+", " event ", line_segs[1])
+			gsub("^Event[[:blank:]]+", "event ", line_segs[1])
+		}
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
+	
 	# remove square brackets from reserved names
 	# but do not match array brackets
 	#  "Integer[]" is not replaced
 	#  "[Stop]" is replaced by "Stop"	
 	$0=gensub("([^[])([\\]])","\\1","g")
 	$0=gensub("([[])([^\\]])","\\2","g")
-	
-	if (csharpStyledOutput==1) {
-		# subs are functions returning void
-		gsub("[[:blank:]]Sub[[:blank:]]+"," void ")
-		gsub("^Sub[[:blank:]]+","void ")
-		gsub("[[:blank:]]Event[[:blank:]]+"," event ")
-		gsub("^Event[[:blank:]]+","event ")
-	}
 	
 	# add semicolon before inline comment
 	if ($0 != "") {	
