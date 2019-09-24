@@ -130,6 +130,20 @@ function join(array, len, sep,	result, i) {
 }
 
 #############################################################################
+# check for an regex in the code part of a line only
+# (excluding inline comments)
+#############################################################################
+function is_in_code(regex, data,	len, segments) {
+	# Split line by "/**<" to get code without inline comment
+	len = split(data, segments, /\/\*\*</)
+	if (len > 0) {
+		return match(segments[1], regex)
+	} else {
+		return 0
+	}
+}
+
+#############################################################################
 # doxygen requires a file tag to be able to document global functions,
 # variables, enums, typedefs and defines
 # this is a default tag to ensure proper documentation of global stuff event
@@ -442,20 +456,18 @@ insideFunction==1 {
 #############################################################################
 # Detect start of a Function/Sub
 #############################################################################
-(/^Function[[:blank:]]+/ || /[[:blank:]]+Function[[:blank:]]+/ ||
-/^Sub[[:blank:]]+/ || /[[:blank:]]+Sub[[:blank:]]+/) && insideFunction==0 &&
-(!(/^Declare[[:blank:]]+/ || /[[:blank:]]+Declare[[:blank:]]+/)) &&
+(is_in_code("^Function[[:blank:]]+", $0) || is_in_code("[[:blank:]]+Function[[:blank:]]+", $0) ||
+is_in_code("^Sub[[:blank:]]+", $0) || is_in_code("[[:blank:]]+Sub[[:blank:]]+", $0)) && insideFunction==0 &&
+(!(is_in_code("^Declare[[:blank:]]+", $0) || is_in_code("[[:blank:]]+Declare[[:blank:]]+", $0))) &&
 insideInterface==0 {
-# Avoid processing when Function/Sub is found only inside inline comment
 	insideFunction=1
 }
 
 #############################################################################
 # Detect end of a Function/Sub
 #############################################################################
-(/^[ \t]*End[[:blank:]]+Function/ || /^[ \t]*End[[:blank:]]+Sub/) &&
+(is_in_code("^[ \t]*End[[:blank:]]+Function", $0) || is_in_code("^[ \t]*End[[:blank:]]+Sub", $0)) &&
 insideFunction==2 {
-# Avoid processing when End is found only inside inline comment
 	insideFunction=0
 }
 
