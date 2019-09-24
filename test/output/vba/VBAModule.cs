@@ -54,7 +54,7 @@ namespace vba {
 		 *  simple integer value
 		 */
 		int someInteger; 
-		string someString; /**< \brief simple String value Byte dummy Optional Date */
+		string someString; /**< \brief simple String value Byte dummy Optional Date As Function */
 		long someLong; 
 		/**
 		 *  simple single value
@@ -70,7 +70,7 @@ namespace vba {
 	 *  <remarks>Test remark</remarks>
 	 */
 	public  double SampleModuleFunction(double pFirst);
-	public  long SampleModuleFunction2(ref long pFirst) ; /**< \brief Sample function comment Char an Object for AddressOf */
+	public  long SampleModuleFunction2(ref long pFirst) ; /**< \brief Sample Function comment Char an Object for AddressOf */
 	/**
 	 *  \cond DEVELOPMENT
 	 *  <summary>

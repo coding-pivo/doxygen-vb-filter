@@ -42,7 +42,7 @@ End Enum
 Public Type SampleVBAType
     ''' simple integer value
     someInteger As Integer
-    someString As String '''< simple String value Byte dummy Optional Date
+    someString As String '''< simple String value Byte dummy Optional Date As Function
     someLong As Long
     ''' simple single value
     someSingle As Single
@@ -58,7 +58,7 @@ Public Function SampleModuleFunction(ByVal pFirst As Double) As Double
     SampleFunction = pFirst
 End Function
 
-Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long '''< Sample function comment Char an Object for AddressOf
+Public Function SampleModuleFunction2(ByRef pFirst As Long) As Long '''< Sample Function comment Char an Object for AddressOf
     SampleFunction2 = pFirst
 End Function
 
