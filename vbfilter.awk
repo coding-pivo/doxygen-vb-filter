@@ -113,7 +113,7 @@ function trim(s) {
 #############################################################################
 # check if element is part of array
 #############################################################################
-function elementExists(element, array,   x, y) {
+function element_exists(element, array,   x, y) {
 	for (x in array) y[array[x]]
 	return element in y
 }
@@ -276,7 +276,7 @@ insideVB6ClassComment==1 {
 		tagname=trim(substr(tagname, 2, RSTART-1))
 	}
 	# check if tag is a structural tag
-	if (elementExists(tagname, doxygen_structural_commands)) {
+	if (element_exists(tagname, doxygen_structural_commands)) {
 		# finish class tag
 		insideVB6ClassComment=0
 		VB6ClassComment[VB6ClassCommentLineCount++]=" */"
