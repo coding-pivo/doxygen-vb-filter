@@ -73,6 +73,6 @@ End Sub
 ''' \endcond
 
 ''' \cond DEVELOPMENT
-Sub SampleModuleMethod2() '''< Sample Sub comment Boolean
+Sub SampleModuleMethod2() '''< Sample Sub Event comment Boolean
 End Sub
 ''' \endcond

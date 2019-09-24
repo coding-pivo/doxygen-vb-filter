@@ -85,7 +85,7 @@ namespace vba {
 	/**
 	 *  \cond DEVELOPMENT
 	 */
-	void SampleModuleMethod2() ; /**< \brief Sample Sub comment Boolean */
+	void SampleModuleMethod2() ; /**< \brief Sample Sub Event comment Boolean */
 	/**
 	 *  \endcond
 	 */
