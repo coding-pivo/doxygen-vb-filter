@@ -63,7 +63,7 @@ namespace vba {
 	}
 	/**
 	 *  <summary>
-	 *  function with parameter
+	 *  function with parameter Sub
 	 *  </summary>
 	 *  <param name="pFirst">simple parameter</param>
 	 *  <returns>some double value</returns>
@@ -85,7 +85,7 @@ namespace vba {
 	/**
 	 *  \cond DEVELOPMENT
 	 */
-	void SampleModuleMethod2() ; /**< \brief Sample sub comment Boolean */
+	void SampleModuleMethod2() ; /**< \brief Sample Sub comment Boolean */
 	/**
 	 *  \endcond
 	 */

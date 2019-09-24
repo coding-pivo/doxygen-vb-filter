@@ -49,7 +49,7 @@ Public Type SampleVBAType
 End Type
 
 ''' <summary>
-''' function with parameter
+''' function with parameter Sub
 ''' </summary>
 ''' <param name="pFirst">simple parameter</param>
 ''' <returns>some double value</returns>
@@ -73,6 +73,6 @@ End Sub
 ''' \endcond
 
 ''' \cond DEVELOPMENT
-Sub SampleModuleMethod2() '''< Sample sub comment Boolean
+Sub SampleModuleMethod2() '''< Sample Sub comment Boolean
 End Sub
 ''' \endcond
