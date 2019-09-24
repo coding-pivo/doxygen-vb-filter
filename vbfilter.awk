@@ -530,7 +530,15 @@ insideFunction==2 {
 
 # String -> string
 /\<String\>/ && (csharpStyledOutput==1) {
-	gsub(/\<String\>/,"string")
+	# Split line by inline comment string sequence
+	# to avoid changing any keywords inside a comment
+	len = split($0, line_segs, /\/\*\*</)
+	if (len > 0) {
+		# Change stuff
+		gsub(/\<String\>/, "string", line_segs[1])
+	}
+	# Recombine line
+	$0 = join(line_segs, len, "/**<")
 }
 
 # Boolean -> bool

@@ -28,7 +28,7 @@ namespace vba {
 		Third_Item = 3, /**< \brief Third enum item */
 		[_Last] = 3
 	}
-	private enum SampleEnum2 /**< \brief simple VBA Private Enum */
+	private enum SampleEnum2 /**< \brief simple VBA Private Enum String */
 	{
 		[_First] = 1,
 		First_Item = 1, /**< \brief First enum item */
