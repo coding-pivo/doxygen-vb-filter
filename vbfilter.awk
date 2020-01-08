@@ -887,7 +887,9 @@ insideType==1 {
 	}
 	print appShift "/** \\remark Is imported from external library: " libName aliasName " */"
 	if (csharpStyledOutput==1) {
-		sub(/Declare[[:blank:]]+/,"extern ")
+		sub(/Declare[[:blank:]]+/, "extern ")
+	} else {
+		sub(/Declare[[:blank:]]+/, "")
 	}
 	libName=""
 	aliasName=""
