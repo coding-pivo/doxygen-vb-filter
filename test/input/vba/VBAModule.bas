@@ -4,14 +4,16 @@ Attribute VB_Name = "VBAModule"
 
 Public Declare Function GetTickCount Lib "kernel32.dll" () As Long
 
-Public Declare Function WritePrivateProfileStringA Lib "kernel32" ( _
+Public Declare Function WritePrivateProfileStringA Lib "kernel32" ( _ ' Also this Boolean comment should be ignored
     ByVal strSection As String, _
     ByVal strKey As String, _
     ByVal strString As String, _
     ByVal strFileNameName As String) As Long
 
 ''' Global variable example
-Public gl_test As Double
+Public gl_test As Double''' A Double comment that should be ignored
+
+' This comment should be ignored
 
 ''' <summary>
 ''' simple VBA Public Enum
@@ -20,6 +22,7 @@ Public Enum SampleEnum1
     [_First] = 1
     ''' First enum item
     First_Item = 1
+    ' This comment should be ignored
     Second_Item = 2 '''< Second Integer enum Short item Decimal
     Third_Item = 3 '''< Third Single enum Long item
     [_Last] = 3
@@ -86,7 +89,7 @@ End Type
 ''' <param name="pFirst">simple parameter</param>
 ''' <returns>some double value</returns>
 ''' <remarks>Test remark</remarks>
-Public Function SampleModuleFunction(ByVal pFirst As Double, Optional ByRef t As Variant, Optional ByVal s As String) As Double
+Public Function SampleModuleFunction(ByVal pFirst As Double, Optional ByRef t As Variant, Optional ByVal s As String) As Double ' This String comment should be ignored
     SampleFunction = pFirst
 End Function
 

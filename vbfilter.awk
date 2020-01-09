@@ -144,6 +144,28 @@ function is_in_code(regex, data,	len, segments) {
 }
 
 #############################################################################
+# remove VBA inline comments but keep Doxygen inline comments
+#############################################################################
+function remove_vba_comment(s,	i, c) {
+	# Remove leading and trailing white spaces
+	s = trim(s)
+	# Find first '
+	i = index(s,"'")
+	# Return original string when there is no comment at all or only comment and no code
+	if ((i == 0) || (i == 1)) {
+		return s
+	}
+	# Get all content from first ' to line end
+	c = substr(s, i)
+	# Check if '''< is first character
+	if (substr(c, 1, 4) == "'''<") {
+		return s
+	} else {
+		return substr(s, 1, i - 1)
+	}
+}
+
+#############################################################################
 # doxygen requires a file tag to be able to document global functions,
 # variables, enums, typedefs and defines
 # this is a default tag to ensure proper documentation of global stuff event
@@ -173,6 +195,13 @@ leadingNamespace==1 {
 #############################################################################
 UnixLineBreaks==1 {
 	sub(/\r$/,"")
+}
+
+#############################################################################
+# remove vba inline comments
+#############################################################################
+{
+	$0=remove_vba_comment($0)
 }
 
 #############################################################################
