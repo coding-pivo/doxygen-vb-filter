@@ -184,8 +184,7 @@ defaultFileHeaderPrinted==0 {
 # can be disabled by leadingNamespace=0 in configuration section
 #############################################################################
 leadingNamespace==1 {
-	file=gensub(/\\/, "/", "G", FILENAME)
-	print "namespace "basename[split(file, basename , "/")-1]" {"
+	print "namespace "basename[split(gensub(/\\/, "/", "G", FILENAME), basename , "/")-1]" {"
 	AddShift()
 	leadingNamespace=2
 }
@@ -1341,8 +1340,7 @@ END {
 	}
 	# print leading namespace if not yet printed due to empty file
 	if (leadingNamespace==1) {
-		file=gensub(/\\/, "/", "G", FILENAME)
-		print "namespace "basename[split(file, basename , "/")-1]" {"
+		print "namespace "basename[split(gensub(/\\/, "/", "G", FILENAME), basename , "/")-1]" {"
 		AddShift()
 		leadingNamespace=2
 	}
