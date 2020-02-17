@@ -80,6 +80,8 @@ BEGIN {
 	VB6ClassComment[VB6ClassCommentLineCount++]="/**"
 	insideVB6ClassComment=0
 	split("file_class_struct_enum_union_fn_var_def_namespace_package_interface", doxygen_structural_commands, "_")
+	exitCode=0
+	isVBFileExtension=1
 }
 
 #############################################################################
@@ -163,6 +165,15 @@ function remove_vba_comment(s,	i, c) {
 	} else {
 		return substr(s, 1, i - 1)
 	}
+}
+
+#############################################################################
+# in case this is not a valid vb file (*.cls, *.ctl, *.bas, *.frm, *.vb)
+# don't change the file at all
+#############################################################################
+isVBFileExtension == 0 {
+	print $0
+	next
 }
 
 #############################################################################
@@ -1330,6 +1341,11 @@ insideFunction!=2 {
 }
 
 END {
+	# skip end rule if the processed file has no valid vb file extension 
+	# assumption: this is not a valid vba file and doesn't need to be filtered
+	if (exitCode == 2) {
+		exit exitCode
+	}
 	# print final closing tag if still inside a comment
 	if (insideComment == 1) {
 		print appShift " */"
