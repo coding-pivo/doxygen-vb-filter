@@ -15,6 +15,10 @@ for /R input\vb6 %%f in (*.bas) do  (
    gawk -f ..\vbfilter.awk "%%f" > output\vb6\%%~nf.cs
 )
 
+for /R input\vb6 %%f in (*.dox) do  (
+   gawk -f ..\vbfilter.awk "%%f" > output\vb6\%%~nf.dox
+)
+
 for /R input\vba %%f in (*.frm) do  (
    gawk -f ..\vbfilter.awk "%%f" > output\vba\%%~nf.cs
 )
@@ -25,6 +29,10 @@ for /R input\vba %%f in (*.cls) do  (
 
 for /R input\vba %%f in (*.bas) do  (
    gawk -f ..\vbfilter.awk "%%f" > output\vba\%%~nf.cs
+)
+
+for /R input\vba %%f in (*.md) do  (
+   gawk -f ..\vbfilter.awk "%%f" > output\vba\%%~nf.md
 )
 
 for /R input\vbnet %%f in (*.vb) do  (

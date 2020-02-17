@@ -80,8 +80,20 @@ BEGIN {
 	VB6ClassComment[VB6ClassCommentLineCount++]="/**"
 	insideVB6ClassComment=0
 	split("file_class_struct_enum_union_fn_var_def_namespace_package_interface", doxygen_structural_commands, "_")
+	split("bas_cls_ctl_frm_vb", valid_vb_extensions, "_")
 	exitCode=0
 	isVBFileExtension=1
+	
+#############################################################################
+# check for valid vb file extension
+#############################################################################
+	# if not a valid file extension then ARGV[1]
+	fileExtension = b[split(a[split(gensub(/\\/, "/", "G", ARGV[1]), a, "/")], b, ".")]
+	fileBaseName=b[split(a[split(gensub(/\\/, "/", "G", ARGV[1]), a, "/")], b, ".")-1]
+	if (!element_exists(fileExtension, valid_vb_extensions)) {
+		isVBFileExtension = 0
+		exitCode = 2
+	}
 }
 
 #############################################################################
